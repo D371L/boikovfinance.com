@@ -2,6 +2,12 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
+const checklist = [
+  "ליווי אישי מהשלב הראשון ועד קבלת המפתח, עד הפרט האחרון",
+  "ניהול משא ומתן מול הבנקים",
+  "פתרונות פיננסיים בהתאמה אישית",
+];
+
 export default function AboutSection() {
   const { ref, isVisible } = useScrollAnimation();
 
@@ -15,70 +21,88 @@ export default function AboutSection() {
             : "opacity-0 translate-y-10"
         }`}
       >
-        {/* Section Title */}
-        <h2 className="text-4xl sm:text-5xl font-black text-white text-center mb-12">
+        <h2 className="text-4xl sm:text-5xl font-black text-white text-center mb-12 sm:mb-16">
           על עצמי
         </h2>
 
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-10 lg:gap-16" dir="rtl">
-          {/* Image */}
-          <div className="w-full lg:w-5/12 flex-shrink-0">
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
+        <div
+          className="flex flex-col lg:flex-row-reverse items-start gap-10 lg:gap-16"
+          dir="rtl"
+        >
+          <div className="w-full lg:w-5/12 shrink-0 mx-auto lg:mx-0 max-w-md lg:max-w-none">
+            <div className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 lg:sticky lg:top-28">
               <img
                 src="/assets/about-photo.png"
                 alt="ארטיום בויקוב"
-                className="w-full h-[400px] lg:h-[520px] object-cover"
+                className="w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] object-cover"
               />
             </div>
           </div>
 
-          {/* Text Content */}
-          <div className="w-full lg:w-7/12 text-right">
-            <p className="text-[#D4A843] font-bold text-lg mb-2">
-              ארטיום בויקוב | Finance
-            </p>
-            <p className="text-white/90 text-base sm:text-lg mb-6 leading-relaxed">
-              יועץ משכנתאות מבית ייחוד משכנתאות
-            </p>
-            <p className="text-white/80 text-base sm:text-lg mb-6 leading-relaxed">
-              עם ניסיון של מעל 10 שנים בתחום והיקף פעילות של כ-40 מיליון ₪ בחודש – אני יודע בדיוק איך להשיג עבורך את המשכנתא הנכונה בתנאים הטובים ביותר.
-            </p>
-            <p className="text-white/80 text-base sm:text-lg mb-8 leading-relaxed">
-              בין אם אתה רוכש דירה, ממחזר משכנתא או רוצה לעשות סדר בהלוואות – אני מלווה אותך אישית, חוסך לך כסף ודואג שתקבל החלטות חכמות ובטוחות.
-            </p>
+          <div className="w-full lg:w-7/12 text-right space-y-8">
+            <header className="space-y-3 pb-2 border-b border-white/10">
+              <p className="text-[#D4A843] font-bold text-lg sm:text-xl tracking-tight">
+                ארטיום בויקוב | Finance
+              </p>
+              <p className="text-white text-lg sm:text-xl font-semibold leading-snug">
+                יועץ משכנתאות מבית ייחוד משכנתאות
+              </p>
+              <p className="text-white/65 text-sm sm:text-base leading-relaxed pr-3 border-r-2 border-[#D4A843]/40">
+                לימודים ותעודה מטעם מכללת פוקוס
+              </p>
+            </header>
 
-            {/* Checkmarks */}
-            <div className="space-y-3 mb-8">
-              <div className="flex items-center gap-3">
-                <span className="text-green-400 text-xl">✔️</span>
-                <span className="text-white/90 text-base sm:text-lg">
-                  ליווי אישי מהשלב הראשון ועד קבלת המפתח
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-green-400 text-xl">✔️</span>
-                <span className="text-white/90 text-base sm:text-lg">
-                  ניהול משא ומתן מול הבנקים
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-green-400 text-xl">✔️</span>
-                <span className="text-white/90 text-base sm:text-lg">
-                  פתרונות פיננסיים בהתאמה אישית
-                </span>
-              </div>
+            <div className="space-y-5 text-white/85 text-base sm:text-lg leading-relaxed">
+              <p>
+                עם ניסיון של מעל שנתיים בתחום והיקף פעילות של כ-40 מיליון ₪
+                בחודש – אני יודע בדיוק איך להשיג עבורך את המשכנתא הנכונה
+                בתנאים הטובים ביותר.
+              </p>
+              <p>
+                בין אם אתה רוכש דירה, ממחזר משכנתא או רוצה לעשות סדר
+                בהלוואות – אני מלווה אותך אישית, חוסך לך כסף ודואג שתקבל
+                החלטות חכמות ובטוחות.
+              </p>
             </div>
 
-            {/* Tagline */}
-            <p className="text-[#D4A843] font-bold text-xl mb-8">
+            <ul className="rounded-xl bg-white/[0.06] border border-white/10 p-5 sm:p-6 space-y-4">
+              {checklist.map((line) => (
+                <li
+                  key={line}
+                  className="flex gap-3 sm:gap-4 text-white/90 text-base sm:text-lg leading-snug"
+                >
+                  <span
+                    className="text-lg sm:text-xl shrink-0 leading-none mt-0.5"
+                    aria-hidden
+                  >
+                    ✔️
+                  </span>
+                  <span>{line}</span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="text-[#D4A843] font-bold text-xl sm:text-2xl leading-snug tracking-tight">
               פחות ריביות, יותר שקט נפשי
             </p>
 
-            {/* CTA Button */}
+            <div className="space-y-5 text-white/80 text-base sm:text-lg leading-relaxed">
+              <p>
+                אני מאמין שמשכנתא היא אחת ההחלטות הכלכליות והחשובות בחיים
+                ולכן לקוח אצלי הוא קודם כל חבר ומקבל יחס אישי וליווי אישי
+                ושקיפות מלאה והתאמה מדויקת לצרכים שלו.
+              </p>
+              <p>
+                המטרה שלי היא לא רק להשיג ריביות טובות אלא לבנות ביטחון
+                כלכלי ושקט נפשי לאורך כל השנים.
+              </p>
+            </div>
+
             <a
               href="https://wa.me/972000000000"
               target="_blank"
               rel="noopener noreferrer"
+              className="inline-block pt-2"
             >
               <Button className="bg-[#D4A843] hover:bg-[#b8912e] text-white font-bold px-8 py-4 rounded-xl text-lg shadow-lg shadow-[#D4A843]/30 transition-all hover:shadow-xl hover:shadow-[#D4A843]/40">
                 עוד עליי

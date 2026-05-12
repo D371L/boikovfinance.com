@@ -6,7 +6,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import GallerySection from "@/components/GallerySection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import FloatingActionButtons from "@/components/FloatingActionButtons";
 
 export default function Index() {
   return (
@@ -19,7 +19,7 @@ export default function Index() {
       <GallerySection />
       <FAQSection />
       <Footer />
-      <WhatsAppButton />
+      <FloatingActionButtons />
     </div>
   );
 }

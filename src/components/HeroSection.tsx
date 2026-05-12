@@ -14,22 +14,10 @@ export default function HeroSection() {
         >
           {/* Text Content - centered more */}
           <div className="max-w-lg text-center lg:text-right z-10 pb-8 lg:pb-0">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-[#0d1b4a] mb-6 leading-tight">
-              ארטיום בויקוב
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.35rem] xl:text-4xl font-black text-[#0d1b4a] mb-8 leading-snug tracking-tight">
+              ארטיום בויקוב יועץ משכנתאות מטעם חברת ייחוד ייעוץ משכנתאות
+              שעוזר לך להשיג את הריבית הנמוכה ביותר על המשכנתא שלך
             </h1>
-            <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 mb-1 leading-relaxed font-normal">
-              יועץ משכנתאות ייחודי
-            </p>
-            <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 mb-1 leading-relaxed font-normal">
-              שעוזר לך להשיג{" "}
-              <span className="font-bold text-[#0d1b4a]">ריבית מעולה</span>
-            </p>
-            <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 mb-1 leading-relaxed font-normal">
-              על המשכנתא שלך.
-            </p>
-            <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0d1b4a] mb-10 leading-relaxed">
-              בהתחייבות.
-            </p>
 
             {/* CTA Button */}
             <a
@@ -37,9 +25,9 @@ export default function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="bg-[#D4A843] hover:bg-[#b8912e] text-white font-bold text-lg px-10 py-7 rounded-xl shadow-lg shadow-[#D4A843]/30 transition-all hover:shadow-xl hover:shadow-[#D4A843]/40 hover:scale-105 mb-10 mx-auto lg:mx-0 flex items-center gap-3">
-                <ArrowLeft className="w-5 h-5" />
-                לקביעת שיחת ייעוץ
+              <Button className="!h-auto min-h-[3.5rem] !whitespace-normal bg-[#D4A843] hover:bg-[#b8912e] text-white font-bold text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-6 sm:py-7 rounded-xl shadow-lg shadow-[#D4A843]/30 transition-all hover:shadow-xl hover:shadow-[#D4A843]/40 hover:scale-[1.02] mb-10 mx-auto lg:mx-0 flex items-center gap-2 sm:gap-3 max-w-xl text-center leading-tight">
+                <ArrowLeft className="w-5 h-5 shrink-0" />
+                לקביעת שיחת יעוץ ללא תשלום או כל התחייבות
               </Button>
             </a>
 
@@ -60,7 +48,7 @@ export default function HeroSection() {
               {/* Counter */}
               <div className="text-right">
                 <div className="text-3xl sm:text-4xl font-extrabold text-[#1a237e]">
-                  +2,400
+                  500
                 </div>
                 <div className="text-gray-600 text-sm font-medium">לקוחות מרוצים</div>
               </div>
