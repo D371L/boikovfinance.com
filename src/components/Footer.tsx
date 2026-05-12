@@ -2,6 +2,8 @@ import { Phone, MapPin, Clock, Mail } from "lucide-react";
 import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="bg-[#0a1535] text-white" dir="rtl">
       {/* Main Footer Content */}
@@ -117,13 +119,8 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-col items-center gap-4">
-          <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm">
-            <a href="#" className="hover:text-[#c9a84c] transition-colors">תקנון אתר</a>
-            <a href="#" className="hover:text-[#c9a84c] transition-colors">הצהרת נגישות</a>
-            <a href="#" className="hover:text-[#c9a84c] transition-colors">מדיניות פרטיות</a>
-          </div>
           <p className="text-gray-500 text-sm">
-            כל הזכויות שמורות לרוסלן שמר 2025©
+            כל הזכויות שמורות ארטיום בויקוב {year}©
           </p>
           <p className="text-gray-500 text-sm mt-2">
             Developed with ❤️ by{" "}

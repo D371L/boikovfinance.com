@@ -64,12 +64,9 @@ export default function GallerySection() {
           }`}
         >
           <div className="text-center mb-12">
-            <h2 className="text-4xl sm:text-5xl font-black text-[#0d1b4a] mb-4">
+            <h2 className="text-4xl sm:text-5xl font-black text-[#0d1b4a]">
               גלריה
             </h2>
-            <p className="text-lg text-gray-500 max-w-xl mx-auto">
-              רגעים מהעבודה שלי
-            </p>
           </div>
 
           <div className="relative">
