@@ -2,21 +2,21 @@ import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-/** Превью — статичная картинка; в карточке без тега video, чтобы не было белых кадров и глюков HEVC. */
+/** Превью — статичная картинка; в карточке без тега video (стабильное отображение). */
 const galleryVideos = [
   {
-    src: "/assets/gallery-video-1.mp4",
-    poster: "/assets/gallery-1.png",
+    src: "/assets/video1.mp4",
+    poster: "/assets/video1.png",
     title: "סרטון 1",
   },
   {
-    src: "/assets/gallery-video-2.mp4",
-    poster: "/assets/gallery-2.png",
+    src: "/assets/video2.mp4",
+    poster: "/assets/video2.png",
     title: "סרטון 2",
   },
   {
-    src: "/assets/gallery-video-3.mp4",
-    poster: "/assets/gallery-3.png",
+    src: "/assets/video3.mp4",
+    poster: "/assets/video3.png",
     title: "סרטון 3",
   },
 ];
