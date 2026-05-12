@@ -41,10 +41,10 @@ export default function FloatingActionButtons() {
           onClick={() =>
             window.scrollTo({ top: 0, behavior: "smooth" })
           }
-          className="w-14 h-14 rounded-full bg-[#0d1b4a] text-white hover:bg-[#152a6e] shadow-lg shadow-[#0d1b4a]/25 flex items-center justify-center transition-all hover:scale-110 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A843] focus-visible:ring-offset-2"
+          className="w-14 h-14 rounded-full bg-[#D4A843] text-[#0d1b4a] hover:bg-[#c49a38] shadow-lg shadow-black/25 ring-2 ring-white/90 flex items-center justify-center transition-all hover:scale-110 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0d1b4a] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
           aria-label="חזרה לראש העמוד"
         >
-          <ChevronUp className="w-7 h-7" strokeWidth={2.5} />
+          <ChevronUp className="w-7 h-7" strokeWidth={2.75} />
         </button>
       </div>
 

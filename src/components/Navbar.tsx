@@ -59,7 +59,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="bg-[#D4A843] hover:bg-[#b8912e] text-white font-bold px-6 py-3 rounded-lg shadow-lg shadow-[#D4A843]/30 transition-all hover:shadow-xl hover:shadow-[#D4A843]/40">
+              <Button className="bg-[#D4A843] hover:bg-[#b8912e] text-[#0d1b4a] font-bold px-6 py-3 rounded-lg shadow-md shadow-[#0d1b4a]/10 transition-all hover:shadow-lg hover:shadow-[#0d1b4a]/15">
                 לקביעת שיחת ייעוץ
               </Button>
             </a>
@@ -119,7 +119,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="w-full bg-[#D4A843] hover:bg-[#b8912e] text-white font-bold px-6 py-3 rounded-lg mt-4">
+              <Button className="w-full bg-[#D4A843] hover:bg-[#b8912e] text-[#0d1b4a] font-bold px-6 py-3 rounded-lg mt-4">
                 לקביעת שיחת ייעוץ
               </Button>
             </a>
