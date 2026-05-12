@@ -13,7 +13,7 @@ pnpm run dev
 
 ## GitHub Pages
 
-1. В репозитории: **Settings → Pages → Build and deployment**: источник **GitHub Actions** (не «Deploy from a branch»).
+1. В репозитории: **Settings → Pages → Build and deployment**: источник **GitHub Actions** (не «Deploy from a branch»). Иначе job **deploy** падает, даже когда **build** зелёный.
 2. После пуша в `main` или `master` workflow **Deploy to GitHub Pages** соберёт проект и опубликует `dist`.
 3. В **Settings → Pages** для пользовательского домена укажите **boikovfinance.com**; в корне репозитория лежит `public/CNAME` — он копируется в `dist` при сборке.
 

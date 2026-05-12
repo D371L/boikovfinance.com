@@ -48,7 +48,7 @@ export default function HeroSection() {
               {/* Client Avatars */}
               <div className="flex -space-x-3 space-x-reverse">
                 <img
-                  src="https://mgx-backend-cdn.metadl.com/generate/images/1202167/2026-05-07/odgohgyaagqa/client-avatars-group.png"
+                  src="/images/client-avatars-group.png"
                   alt="לקוחות מרוצים"
                   className="h-12 object-contain"
                 />
@@ -73,7 +73,7 @@ export default function HeroSection() {
               {/* Subtle glow behind image */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#f0f7ff] to-transparent rounded-full blur-3xl opacity-50 scale-110"></div>
               <img
-                src="https://mgx-backend-cdn.metadl.com/generate/images/1202167/2026-05-07/odgn6tqaagqq/hero-consultant-business-portrait.png"
+                src="/images/hero-consultant-business-portrait.png"
                 alt="ארטיום בויקוב - יועץ משכנתאות"
                 className="relative z-10 w-[320px] sm:w-[400px] lg:w-[480px] h-auto object-contain drop-shadow-2xl"
               />
