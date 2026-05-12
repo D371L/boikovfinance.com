@@ -20,7 +20,8 @@ export default function HeroSection() {
                 ארטיום בויקוב
               </h1>
               <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-[#0d1b4a]/95 leading-snug">
-                יועץ משכנתאות מטעם חברת ייחוד ייעוץ משכנתאות
+                <span className="block">יועץ משכנתאות מטעם חברת</span>
+                <span className="block">ייחוד ייעוץ משכנתאות</span>
               </p>
               <p className="text-base sm:text-lg text-gray-600 font-normal leading-relaxed max-w-md mx-auto lg:ms-auto border-t border-[#D4A843]/35 pt-5 sm:pt-6">
                 שעוזר לך להשיג{" "}

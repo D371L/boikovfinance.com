@@ -24,7 +24,7 @@ process.env.VITE_APP_TITLE = escapeHtmlAttr(process.env.VITE_APP_TITLE);
 process.env.VITE_APP_DESCRIPTION = escapeHtmlAttr(
   process.env.VITE_APP_DESCRIPTION
 );
-process.env.VITE_APP_LOGO_URL ??= '/favicon.svg';
+process.env.VITE_APP_LOGO_URL ??= '/favicon.png';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {

@@ -4,6 +4,7 @@ import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import GallerySection from "@/components/GallerySection";
+import OfficeSection from "@/components/OfficeSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import FloatingActionButtons from "@/components/FloatingActionButtons";
@@ -17,6 +18,7 @@ export default function Index() {
       <AboutSection />
       <TestimonialsSection />
       <GallerySection />
+      <OfficeSection />
       <FAQSection />
       <Footer />
       <FloatingActionButtons />
