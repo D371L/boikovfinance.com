@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 const checklist = [
   "ליווי אישי מהשלב הראשון ועד קבלת המפתח, עד הפרט האחרון",
@@ -99,7 +100,7 @@ export default function AboutSection() {
             </div>
 
             <a
-              href="https://wa.me/972000000000"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block pt-2"

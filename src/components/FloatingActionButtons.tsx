@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronUp } from "lucide-react";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 function usePastHero() {
   const [pastHero, setPastHero] = useState(false);
@@ -49,7 +50,7 @@ export default function FloatingActionButtons() {
       </div>
 
       <a
-        href="https://wa.me/972000000000"
+        href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/40 transition-all hover:scale-110 hover:shadow-xl hover:shadow-[#25D366]/50"

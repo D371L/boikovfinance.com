@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,7 +56,7 @@ export default function Navbar() {
           {/* CTA Button */}
           <div className="hidden md:block">
             <a
-              href="https://wa.me/972000000000"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -115,7 +116,7 @@ export default function Navbar() {
               שאלות נפוצות
             </a>
             <a
-              href="https://wa.me/972000000000"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
             >

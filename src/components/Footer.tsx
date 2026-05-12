@@ -1,4 +1,5 @@
 import { Phone, MapPin, Clock, Mail } from "lucide-react";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/contact";
 
 export default function Footer() {
   return (
@@ -11,11 +12,11 @@ export default function Footer() {
             <h3 className="text-xl font-bold text-[#c9a84c] mb-6 tracking-wide">צור קשר</h3>
             <div className="flex flex-col gap-4">
               <a
-                href="tel:054-585-0064"
+                href={`tel:${PHONE_TEL}`}
                 className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
               >
                 <Phone size={18} className="text-[#c9a84c]" />
-                <span>054-585-0064</span>
+                <span>{PHONE_DISPLAY}</span>
               </a>
               <div className="flex items-center gap-3 text-gray-300">
                 <MapPin size={18} className="text-[#c9a84c]" />

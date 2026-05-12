@@ -3,9 +3,21 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const galleryVideos = [
-  { src: "/assets/gallery-video-1.mp4", title: "סרטון 1" },
-  { src: "/assets/gallery-video-2.mp4", title: "סרטון 2" },
-  { src: "/assets/gallery-video-3.mp4", title: "סרטון 3" },
+  {
+    src: "/assets/gallery-video-1.mp4",
+    poster: "/assets/gallery-1.png",
+    title: "סרטון 1",
+  },
+  {
+    src: "/assets/gallery-video-2.mp4",
+    poster: "/assets/gallery-2.png",
+    title: "סרטון 2",
+  },
+  {
+    src: "/assets/gallery-video-3.mp4",
+    poster: "/assets/gallery-3.png",
+    title: "סרטון 3",
+  },
 ];
 
 export default function GallerySection() {
@@ -85,10 +97,11 @@ export default function GallerySection() {
                 >
                   <video
                     src={video.src}
+                    poster={video.poster}
                     muted
                     playsInline
                     preload="metadata"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 bg-[#0d1b4a]/5"
                     onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play()}
                     onMouseLeave={(e) => {
                       const el = e.currentTarget as HTMLVideoElement;

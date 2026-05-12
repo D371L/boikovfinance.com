@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 export default function HeroSection() {
   return (
@@ -32,7 +33,7 @@ export default function HeroSection() {
 
             {/* CTA Button */}
             <a
-              href="https://wa.me/972000000000"
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -59,7 +60,7 @@ export default function HeroSection() {
               {/* Counter */}
               <div className="text-right">
                 <div className="text-3xl sm:text-4xl font-bold text-[#1a237e] tabular-nums tracking-tight">
-                  500
+                  500+
                 </div>
                 <div className="text-gray-600 text-sm font-normal">לקוחות מרוצים</div>
               </div>
@@ -72,9 +73,12 @@ export default function HeroSection() {
               {/* Subtle glow behind image */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#f0f7ff] to-transparent rounded-full blur-3xl opacity-50 scale-110"></div>
               <img
-                src="/images/hero-consultant-business-portrait.png"
+                src="/images/herologo.jpeg"
                 alt="ארטיום בויקוב - יועץ משכנתאות"
-                className="relative z-10 w-[320px] sm:w-[400px] lg:w-[480px] h-auto object-contain drop-shadow-2xl"
+                className="relative z-10 w-[320px] sm:w-[400px] lg:w-[480px] h-auto max-h-[min(85vh,640px)] object-cover object-top rounded-2xl shadow-2xl"
+                width={1290}
+                height={1245}
+                fetchPriority="high"
               />
             </div>
           </div>
