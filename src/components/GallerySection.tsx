@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
+/** Превью — статичная картинка; в карточке без тега video, чтобы не было белых кадров и глюков HEVC. */
 const galleryVideos = [
   {
     src: "/assets/gallery-video-1.mp4",
@@ -62,7 +63,6 @@ export default function GallerySection() {
               : "opacity-0 translate-y-10"
           }`}
         >
-          {/* Section Header */}
           <div className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-black text-[#0d1b4a] mb-4">
               גלריה
@@ -72,10 +72,9 @@ export default function GallerySection() {
             </p>
           </div>
 
-          {/* Gallery Row with Arrows */}
           <div className="relative">
-            {/* Left Arrow */}
             <button
+              type="button"
               onClick={() => scrollBy("left")}
               className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:scale-110"
               aria-label="הקודם"
@@ -83,7 +82,6 @@ export default function GallerySection() {
               <ChevronLeft size={24} className="text-[#0d1b4a]" />
             </button>
 
-            {/* Scrollable Row */}
             <div
               ref={scrollRef}
               className="flex gap-4 overflow-x-auto scrollbar-hide px-10 py-2"
@@ -91,32 +89,29 @@ export default function GallerySection() {
             >
               {galleryVideos.map((video, index) => (
                 <button
-                  key={index}
+                  type="button"
+                  key={video.src}
                   onClick={() => openLightbox(index)}
-                  className="group flex-shrink-0 w-[220px] h-[350px] sm:w-[260px] sm:h-[420px] relative overflow-hidden rounded-2xl cursor-pointer border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
+                  className="group flex-shrink-0 w-[220px] h-[350px] sm:w-[260px] sm:h-[420px] relative overflow-hidden rounded-2xl cursor-pointer border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 bg-[#e8eef8]"
                 >
-                  <video
-                    src={video.src}
-                    poster={video.poster}
-                    muted
-                    playsInline
-                    preload="metadata"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 bg-[#0d1b4a]/5"
-                    onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play()}
-                    onMouseLeave={(e) => {
-                      const el = e.currentTarget as HTMLVideoElement;
-                      el.pause();
-                      el.currentTime = 0;
-                    }}
+                  <img
+                    src={video.poster}
+                    alt={video.title}
+                    width={400}
+                    height={700}
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-[#0d1b4a]/0 group-hover:bg-[#0d1b4a]/10 transition-colors duration-300" />
-                  {/* Play icon overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1b4a]/50 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-14 h-14 bg-white/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 ring-2 ring-white/50">
                       <svg
-                        className="w-6 h-6 text-[#0d1b4a] ml-1"
+                        className="w-6 h-6 text-[#0d1b4a] ml-0.5"
                         fill="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden
                       >
                         <path d="M8 5v14l11-7z" />
                       </svg>
@@ -126,8 +121,8 @@ export default function GallerySection() {
               ))}
             </div>
 
-            {/* Right Arrow */}
             <button
+              type="button"
               onClick={() => scrollBy("right")}
               className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:scale-110"
               aria-label="הבא"
@@ -138,35 +133,40 @@ export default function GallerySection() {
         </div>
       </section>
 
-      {/* Lightbox */}
       {lightboxIndex !== null && (
         <div
           className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
           onClick={closeLightbox}
+          role="presentation"
         >
           <button
+            type="button"
             onClick={(e) => {
               e.stopPropagation();
               closeLightbox();
             }}
-            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors z-10"
+            aria-label="סגור"
           >
             <X size={32} />
           </button>
 
           <button
+            type="button"
             onClick={(e) => {
               e.stopPropagation();
               goPrev();
             }}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors z-10"
+            aria-label="סרטון קודם"
           >
             <ChevronLeft size={40} />
           </button>
 
           <video
             key={lightboxIndex}
-            src={galleryVideos[lightboxIndex].src}
+            src={`${galleryVideos[lightboxIndex].src}#t=0.001`}
+            poster={galleryVideos[lightboxIndex].poster}
             controls
             autoPlay
             playsInline
@@ -175,11 +175,13 @@ export default function GallerySection() {
           />
 
           <button
+            type="button"
             onClick={(e) => {
               e.stopPropagation();
               goNext();
             }}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white transition-colors z-10"
+            aria-label="סרטון הבא"
           >
             <ChevronRight size={40} />
           </button>
