@@ -24,10 +24,6 @@ const officePhotos: { src: string; alt: string }[] = [
     alt: "משרד מודרני",
   },
   {
-    src: "/assets/office6.jpeg",
-    alt: "משרד",
-  },
-  {
     src: "/assets/office7.jpeg",
     alt: "משרד",
   },

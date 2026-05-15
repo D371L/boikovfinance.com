@@ -122,16 +122,28 @@ export default function Footer() {
           <p className="text-gray-500 text-sm">
             כל הזכויות שמורות ארטיום בויקוב {year}©
           </p>
-          <p className="text-gray-500 text-sm mt-2">
-            Developed with ❤️ by{" "}
-            <a
-              href="https://hellsec.dev/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#c9a84c] hover:text-white transition-colors font-medium"
-            >
-              HellSec
-            </a>
+          <p
+            className="text-gray-500 text-sm mt-2 inline-flex flex-wrap items-center justify-center gap-1.5"
+            dir="ltr"
+          >
+            <span>Developed with ❤️ by</span>
+            <span className="inline-flex items-center gap-1.5">
+              <a
+                href="https://hellsec.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#c9a84c] hover:text-white transition-colors font-medium"
+              >
+                HellSec
+              </a>
+              <img
+                src="/assets/hellsec-logo.png"
+                alt=""
+                width={28}
+                height={28}
+                className="h-7 w-7 shrink-0 rounded-full object-contain ring-1 ring-white/20 bg-black/30"
+              />
+            </span>
           </p>
         </div>
       </div>
