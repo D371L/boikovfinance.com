@@ -139,9 +139,9 @@ export default function Footer() {
               <img
                 src="/assets/hellsec-logo.png"
                 alt=""
-                width={28}
-                height={28}
-                className="h-7 w-7 shrink-0 rounded-full object-contain ring-1 ring-white/20 bg-black/30"
+                width={56}
+                height={56}
+                className="h-14 w-14 shrink-0 rounded-full object-contain ring-1 ring-white/20 bg-black/30"
               />
             </span>
           </p>

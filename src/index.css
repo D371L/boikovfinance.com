@@ -97,9 +97,34 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
   }
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Viewport scrollbar – white → soft blue; hover reverses (matches hero #f0f7ff palette) */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #bfdbfe #f0f7ff;
+  }
+
+  html::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: #f0f7ff;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    border: 2px solid #f0f7ff;
+    background: linear-gradient(180deg, #ffffff 0%, #bfdbfe 100%);
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #bfdbfe 0%, #ffffff 100%);
   }
 }
