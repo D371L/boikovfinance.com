@@ -5,6 +5,11 @@ export function useScrollAnimation(threshold = 0.15) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIsVisible(true);
+      return;
+    }
+
     const element = ref.current;
     if (!element) return;
 
@@ -19,10 +24,7 @@ export function useScrollAnimation(threshold = 0.15) {
     );
 
     observer.observe(element);
-
-    return () => {
-      observer.unobserve(element);
-    };
+    return () => observer.unobserve(element);
   }, [threshold]);
 
   return { ref, isVisible };
