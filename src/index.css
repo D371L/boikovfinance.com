@@ -95,36 +95,41 @@
     @apply border-border;
   }
 
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
-  }
-
   body {
     @apply bg-background text-foreground;
   }
+}
 
-  /* Viewport scrollbar – white → soft blue; hover reverses (matches hero #f0f7ff palette) */
-  html {
-    scrollbar-width: thin;
-    scrollbar-color: #bfdbfe #f0f7ff;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  scrollbar-width: thin;
+  scrollbar-color: #0d1b4a #e8edf5;
+}
 
-  html::-webkit-scrollbar {
-    width: 11px;
-  }
+/*
+ * WebKit document scrollbar — outside @layer so ordering doesn’t drop pseudo-elements.
+ * Thumb: white (top) → #0d1b4a (bottom); hover inverts.
+ */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 12px;
+}
 
-  html::-webkit-scrollbar-track {
-    background: #f0f7ff;
-  }
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #e8edf5;
+}
 
-  html::-webkit-scrollbar-thumb {
-    border-radius: 9999px;
-    border: 2px solid #f0f7ff;
-    background: linear-gradient(180deg, #ffffff 0%, #bfdbfe 100%);
-  }
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  border: 3px solid #e8edf5;
+  min-height: 3rem;
+  background: linear-gradient(180deg, #ffffff 0%, #0d1b4a 100%);
+}
 
-  html::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #bfdbfe 0%, #ffffff 100%);
-  }
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #0d1b4a 0%, #ffffff 100%);
 }
