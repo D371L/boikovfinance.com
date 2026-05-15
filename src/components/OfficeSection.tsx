@@ -23,6 +23,22 @@ const officePhotos: { src: string; alt: string }[] = [
     src: "/assets/office5.jpeg",
     alt: "משרד מודרני",
   },
+  {
+    src: "/assets/office6.jpeg",
+    alt: "משרד",
+  },
+  {
+    src: "/assets/office7.jpeg",
+    alt: "משרד",
+  },
+  {
+    src: "/assets/office8.jpeg",
+    alt: "משרד",
+  },
+  {
+    src: "/assets/office9.jpeg",
+    alt: "משרד",
+  },
 ];
 
 export default function OfficeSection() {
@@ -86,6 +102,14 @@ export default function OfficeSection() {
             <h2 className="text-4xl sm:text-5xl font-black text-[#0d1b4a]">
               משרד
             </h2>
+            <a
+              href="https://yhf.co.il/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-block text-base sm:text-lg font-semibold text-[#0d1b4a] underline underline-offset-4 decoration-[#D4A843]/70 hover:text-[#b8912e] transition-colors"
+            >
+              לאתר המשרד
+            </a>
           </div>
 
           <div className="relative">
