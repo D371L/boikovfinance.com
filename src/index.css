@@ -103,33 +103,49 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
+  /* Firefox: solid thumb + track (no gradients on thumb) */
   scrollbar-width: thin;
-  scrollbar-color: #0d1b4a #e8edf5;
+  scrollbar-color: #b8945a #f5f2eb;
 }
 
 /*
- * WebKit document scrollbar — outside @layer so ordering doesn’t drop pseudo-elements.
- * Thumb: white (top) → #0d1b4a (bottom); hover inverts.
+ * WebKit document scrollbar — outside @layer.
+ * Default: cream track, gold → bronze pill thumb (ref 1).
+ * Hover scrollbar / thumb: white track, indigo → pale blue thumb (ref 2).
  */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  width: 12px;
+  width: 14px;
+  border-left: 1px solid #ffffff;
 }
 
 html::-webkit-scrollbar-track,
 body::-webkit-scrollbar-track {
-  background: #e8edf5;
+  background: #f5f2eb;
+  transition: background 0.2s ease;
+}
+
+html::-webkit-scrollbar:hover::-webkit-scrollbar-track,
+body::-webkit-scrollbar:hover::-webkit-scrollbar-track {
+  background: #ffffff;
 }
 
 html::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb {
   border-radius: 9999px;
-  border: 3px solid #e8edf5;
+  border: 3px solid #f5f2eb;
   min-height: 3rem;
-  background: linear-gradient(180deg, #ffffff 0%, #0d1b4a 100%);
+  background: linear-gradient(180deg, #edd9a8 0%, #9a7348 100%);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+html::-webkit-scrollbar:hover::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar:hover::-webkit-scrollbar-thumb {
+  border-color: #ffffff;
 }
 
 html::-webkit-scrollbar-thumb:hover,
 body::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #0d1b4a 0%, #ffffff 100%);
+  background: linear-gradient(180deg, #a5b4fc 0%, #f0f9ff 100%);
+  border-color: #ffffff;
 }
