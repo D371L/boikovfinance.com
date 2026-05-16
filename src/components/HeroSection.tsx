@@ -71,10 +71,10 @@ export default function HeroSection() {
           {/* Consultant Image - Left side in RTL */}
           <div className="flex justify-center items-end shrink-0">
             <img
-              src="/assets/about-photo.png?v=4"
+              src="/assets/about-photo.png?v=5"
               alt="ארטיום בויקוב - יועץ משכנתאות"
-              className="h-[480px] w-[420px] max-w-[min(420px,92vw)] object-cover object-center"
-              width={420}
+              className="h-[480px] w-auto max-w-[min(534px,92vw)] object-contain object-bottom"
+              width={534}
               height={480}
               fetchPriority="high"
             />
