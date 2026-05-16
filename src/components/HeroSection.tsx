@@ -69,21 +69,15 @@ export default function HeroSection() {
           </div>
 
           {/* Consultant Image - Left side in RTL */}
-          <div className="flex justify-center items-end relative">
-            <div className="relative w-[min(300px,78vw)] sm:w-[380px] lg:w-[460px]">
-              {/* Subtle glow behind image */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#f0f7ff] to-transparent rounded-full blur-3xl opacity-50 scale-110" />
-              <div className="relative z-10 aspect-square rounded-full overflow-hidden shadow-[0_24px_48px_rgba(13,27,74,0.14)]">
-                <img
-                  src="/assets/about-photo.png?v=2"
-                  alt="ארטיום בויקוב - יועץ משכנתאות"
-                  className="h-full w-full object-cover object-center"
-                  width={625}
-                  height={562}
-                  fetchPriority="high"
-                />
-              </div>
-            </div>
+          <div className="flex justify-center items-end shrink-0">
+            <img
+              src="/assets/about-photo.png?v=3"
+              alt="ארטיום בויקוב - יועץ משכנתאות"
+              className="h-auto w-[min(600px,92vw)] sm:w-[760px] lg:w-[920px] max-h-[min(90vh,1280px)] object-contain object-bottom"
+              width={625}
+              height={562}
+              fetchPriority="high"
+            />
           </div>
         </div>
       </div>
