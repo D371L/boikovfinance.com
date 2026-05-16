@@ -73,9 +73,9 @@ export default function HeroSection() {
             <img
               src="/assets/about-photo.png?v=3"
               alt="ארטיום בויקוב - יועץ משכנתאות"
-              className="h-auto w-[min(380px,82vw)] sm:w-[440px] lg:w-[500px] max-h-[min(72vh,640px)] object-contain object-bottom"
-              width={625}
-              height={562}
+              className="w-[min(420px,92vw)] h-[480px] object-contain object-bottom"
+              width={420}
+              height={480}
               fetchPriority="high"
             />
           </div>
