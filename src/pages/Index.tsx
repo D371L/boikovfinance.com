@@ -1,3 +1,4 @@
+import TopBanner from "@/components/TopBanner";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -12,6 +13,7 @@ import FloatingActionButtons from "@/components/FloatingActionButtons";
 export default function Index() {
   return (
     <div className="min-h-screen" dir="rtl">
+      <TopBanner />
       <Navbar />
       <HeroSection />
       <ServicesSection />

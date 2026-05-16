@@ -22,7 +22,7 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm">
+    <nav className="sticky top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-[60]">
         <div className="flex items-center justify-between h-24" dir="rtl">
           {/* Logo */}
@@ -94,7 +94,7 @@ export default function Navbar() {
       {/* Mobile backdrop + menu (always mounted for enter/exit motion) */}
       <div
         className={cn(
-          "md:hidden fixed inset-x-0 top-24 bottom-0 z-40 bg-[#0d1b4a]/20 backdrop-blur-[2px] transition-opacity duration-300 ease-out",
+          "md:hidden fixed inset-0 z-40 bg-[#0d1b4a]/20 backdrop-blur-[2px] transition-opacity duration-300 ease-out",
           mobileMenuOpen
             ? "opacity-100"
             : "pointer-events-none opacity-0"
@@ -105,7 +105,7 @@ export default function Navbar() {
 
       <div
         className={cn(
-          "md:hidden fixed inset-x-0 top-24 z-50 max-h-[min(85dvh,calc(100dvh-6rem))] overflow-y-auto border-t border-white/30 shadow-2xl shadow-[#0d1b4a]/10",
+          "md:hidden absolute inset-x-0 top-full z-50 max-h-[min(85dvh,calc(100dvh-6rem))] overflow-y-auto border-t border-white/30 shadow-2xl shadow-[#0d1b4a]/10",
           "bg-white/95 backdrop-blur-xl",
           "transform-gpu transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
           mobileMenuOpen
