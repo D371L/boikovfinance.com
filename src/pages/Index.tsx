@@ -13,7 +13,6 @@ import FloatingActionButtons from "@/components/FloatingActionButtons";
 export default function Index() {
   return (
     <div className="min-h-screen" dir="rtl">
-      <TopBanner />
       <Navbar />
       <HeroSection />
       <ServicesSection />
@@ -22,6 +21,7 @@ export default function Index() {
       <GallerySection />
       <OfficeSection />
       <FAQSection />
+      <TopBanner />
       <Footer />
       <FloatingActionButtons />
     </div>

@@ -10,8 +10,7 @@ export default function TopBanner() {
         alt=""
         width={1920}
         height={640}
-        loading="eager"
-        fetchPriority="high"
+        loading="lazy"
         decoding="async"
         className="block w-full h-auto max-h-[min(42vw,220px)] sm:max-h-none object-cover object-center"
       />

@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="bg-gradient-to-b from-[#f0f7ff] to-white min-h-screen overflow-hidden flex items-center"
+      className="bg-gradient-to-b from-[#f0f7ff] to-white min-h-screen overflow-hidden flex items-center pt-24"
     >
       <div className="max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <div
@@ -74,7 +74,7 @@ export default function HeroSection() {
               {/* Subtle glow behind image */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#f0f7ff] to-transparent rounded-full blur-3xl opacity-50 scale-110"></div>
               <img
-                src="/images/herologo.jpeg"
+                src="/assets/about-photo.png"
                 alt="ארטיום בויקוב - יועץ משכנתאות"
                 className="relative z-10 w-[320px] sm:w-[400px] lg:w-[480px] h-auto max-h-[min(85vh,640px)] object-cover object-top rounded-2xl shadow-2xl"
                 width={1290}

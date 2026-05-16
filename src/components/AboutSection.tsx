@@ -33,7 +33,7 @@ export default function AboutSection() {
           <div className="w-full lg:w-5/12 shrink-0 mx-auto lg:mx-0 max-w-md lg:max-w-none">
             <div className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 lg:sticky lg:top-28">
               <img
-                src="/assets/about-photo.png"
+                src="/images/herologo.jpeg"
                 alt="ארטיום בויקוב"
                 className="w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] object-cover"
               />
