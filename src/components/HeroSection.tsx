@@ -74,7 +74,7 @@ export default function HeroSection() {
               {/* Subtle glow behind image */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#f0f7ff] to-transparent rounded-full blur-3xl opacity-50 scale-110"></div>
               <img
-                src="/assets/about-photo.png"
+                src="/assets/about-photo.png?v=2"
                 alt="ארטיום בויקוב - יועץ משכנתאות"
                 className="relative z-10 w-[320px] sm:w-[400px] lg:w-[480px] h-auto max-h-[min(85vh,640px)] object-cover object-top rounded-2xl shadow-2xl"
                 width={1290}
