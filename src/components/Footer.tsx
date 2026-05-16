@@ -16,10 +16,11 @@ export default function Footer() {
               <a
                 href={`tel:${PHONE_TEL}`}
                 className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
-                dir="ltr"
               >
                 <Phone size={18} className="text-[#c9a84c] shrink-0" />
-                <span className="tabular-nums">{PHONE_DISPLAY}</span>
+                <span dir="ltr" className="tabular-nums [unicode-bidi:isolate]">
+                  {PHONE_DISPLAY}
+                </span>
               </a>
               <div className="flex items-center gap-3 text-gray-300">
                 <MapPin size={18} className="text-[#c9a84c]" />
@@ -32,10 +33,11 @@ export default function Footer() {
               <a
                 href="mailto:artium07@gmail.com"
                 className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
-                dir="ltr"
               >
                 <Mail size={18} className="text-[#c9a84c] shrink-0" />
-                <span>artium07@gmail.com</span>
+                <span dir="ltr" className="[unicode-bidi:isolate]">
+                  artium07@gmail.com
+                </span>
               </a>
             </div>
           </div>
