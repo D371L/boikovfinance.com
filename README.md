@@ -86,7 +86,7 @@ pnpm run lint         # ESLint проверка src/
 
 Пример для локальной сборки: [`.env.example`](.env.example). В CI значения заданы в [`deploy-pages.yml`](.github/workflows/deploy-pages.yml).
 
-Дефолты задаются в `vite.config.ts` (иврит). Перед деплоем: `pnpm run generate:og` — картинка `public/assets/og-default.jpg` (1200×630).
+Дефолты задаются в `vite.config.ts` (иврит). Картинка `public/assets/og-default.jpg` уже в репозитории; после смены логотипа локально: `pnpm run generate:og` (нужен Python + `pip install Pillow`) и закоммитить файл.
 
 ---
 

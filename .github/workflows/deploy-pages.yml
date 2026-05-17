@@ -31,7 +31,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      - run: python3 scripts/generate-og-image.py
+      # og-default.jpg is committed in public/assets/ — regenerate locally: pnpm run generate:og
       - run: pnpm run build
         env:
           VITE_SITE_URL: https://boikovfinance.com
