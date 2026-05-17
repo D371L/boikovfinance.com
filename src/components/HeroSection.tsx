@@ -12,11 +12,11 @@ export default function HeroSection() {
       <HeroBackground />
       <div className="relative z-10 max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <div
-          className="flex flex-col-reverse lg:flex-row items-center justify-center gap-1 sm:gap-4 lg:gap-12"
+          className="flex flex-col-reverse lg:flex-row items-center justify-center lg:justify-between gap-1 sm:gap-4 lg:gap-12 w-full"
           dir="rtl"
         >
           {/* Text Content - centered more */}
-          <div className="max-w-xl lg:max-w-lg text-center lg:text-right z-10 pb-4 sm:pb-8 lg:pb-0">
+          <div className="max-w-xl lg:max-w-lg lg:flex-1 text-center lg:text-right z-10 pb-4 sm:pb-8 lg:pb-0">
             <div className="mb-6 sm:mb-10 lg:mb-12 space-y-3 sm:space-y-5">
               <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl font-black text-[#0d1b4a] leading-[1.08] tracking-tight">
                 ארטיום בויקוב
@@ -71,7 +71,7 @@ export default function HeroSection() {
           </div>
 
           {/* Consultant Image - Left side in RTL */}
-          <div className="flex justify-center items-end shrink-0 w-full mt-3 sm:mt-4 lg:mt-0">
+          <div className="flex justify-center items-end shrink-0 w-full max-lg:mt-3 sm:max-lg:mt-4 lg:w-auto lg:shrink-0">
             <img
               src="/assets/about-photo.png?v=5"
               alt="ארטיום בויקוב - יועץ משכנתאות"
