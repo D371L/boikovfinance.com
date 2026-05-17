@@ -31,7 +31,17 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+      - run: python3 scripts/generate-og-image.py
       - run: pnpm run build
+        env:
+          VITE_SITE_URL: https://boikovfinance.com
+          VITE_APP_SITE_NAME: ארטיום בויקוב
+          VITE_APP_TITLE: ארטיום בויקוב | יועץ משכנתאות בישראל
+          VITE_APP_DESCRIPTION: יועץ משכנתאות מנוסה שעוזר לך להשיג את הריבית הנמוכה ביותר. ייעוץ ראשוני ללא תשלום וללא התחייבות. ליווי אישי מול כל הבנקים.
+          VITE_OG_IMAGE: https://boikovfinance.com/assets/og-default.jpg
+          VITE_OG_IMAGE_ALT: ארטיום בויקוב – יועץ משכנתאות, ייעוץ משכנתאות בישראל
+          VITE_TWITTER_SITE: '@boikovfinance'
+          VITE_TWITTER_CREATOR: '@boikovfinance'
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

@@ -5,13 +5,13 @@
             https://boikovfinance.com/
         </loc>
         <lastmod>
-            2026-05-17T12:11:12.264Z
+            2026-05-17T14:51:55.964Z
         </lastmod>
         <changefreq>
-            daily
+            weekly
         </changefreq>
         <priority>
-            1.0
+            0.8
         </priority>
     </url>
     <url>
@@ -19,13 +19,13 @@
             https://boikovfinance.com/blog
         </loc>
         <lastmod>
-            2026-05-17T12:11:12.264Z
+            2026-05-17T14:51:55.964Z
         </lastmod>
         <changefreq>
-            daily
+            weekly
         </changefreq>
         <priority>
-            1.0
+            0.8
         </priority>
     </url>
 </urlset>

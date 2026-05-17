@@ -72,16 +72,42 @@ pnpm run lint         # ESLint проверка src/
 
 | Переменная | По умолчанию | Назначение |
 |---|---|---|
-| `VITE_APP_TITLE` | `Boikov Finance` | `<title>` страницы и OG-теги |
-| `VITE_APP_DESCRIPTION` | `ייעוץ פיננסי ושירותים פיננסיים מקצועיים` | `<meta name="description">` |
+| `VITE_SITE_URL` | `https://boikovfinance.com` | Canonical, `og:url`, абсолютные картинки в OG |
+| `VITE_APP_SITE_NAME` | `ארטיום בויקוב` | `og:site_name`, author |
+| `VITE_APP_TITLE` | `ארטיום בויקוב \| יועץ משכנתאות בישראל` | `<title>`, OG/Twitter title |
+| `VITE_APP_DESCRIPTION` | ивритское описание Hero | `<meta name="description">`, OG/Twitter |
+| `VITE_OG_IMAGE` | `https://boikovfinance.com/assets/og-default.jpg` | Превью в WhatsApp, Telegram, Facebook |
+| `VITE_OG_IMAGE_ALT` | текст на иврите | `og:image:alt`, доступность |
+| `VITE_TWITTER_SITE` | `@boikovfinance` | Twitter/X card |
+| `VITE_TWITTER_CREATOR` | = `VITE_TWITTER_SITE` | Twitter/X card |
 | `VITE_APP_LOGO_URL` | `/favicon.png` | favicon и apple-touch-icon |
-| `VITE_API_BASE_URL` | `` (пусто) | Базовый URL для API-запросов (если появится бэкенд) |
-| `VITE_SITE_URL` | — | Полный URL сайта для OG-тегов блога (напр. `https://boikovfinance.com`) |
-| `VITE_TWITTER_SITE` | `@atoms` | Twitter/X аккаунт сайта для мета-тегов блога |
-| `VITE_TWITTER_CREATOR` | = `VITE_TWITTER_SITE` | Twitter/X аккаунт автора для мета-тегов блога |
+| `VITE_API_BASE_URL` | `` (пусто) | Базовый URL для API (если появится бэкенд) |
 | `VITE_PORT` | `3000` | Порт dev-сервера |
 
-Дефолты для `VITE_APP_TITLE` и `VITE_APP_DESCRIPTION` задаются прямо в `vite.config.ts`.
+Пример для локальной сборки: [`.env.example`](.env.example). В CI значения заданы в [`deploy-pages.yml`](.github/workflows/deploy-pages.yml).
+
+Дефолты задаются в `vite.config.ts` (иврит). Перед деплоем: `pnpm run generate:og` — картинка `public/assets/og-default.jpg` (1200×630).
+
+---
+
+## SEO и превью в мессенджерах
+
+| Что | Где |
+|---|---|
+| Meta + Open Graph + Twitter | [`index.html`](index.html) (подстановка `%VITE_*%` при сборке) |
+| JSON-LD (WebSite, ProfessionalService, Person, FAQPage) | `index.html` + [`SeoHead`](src/components/SeoHead.tsx) на главной |
+| Prerender главной `/` | [`prerender/site.js`](prerender/site.js) — в HTML есть `<h1>` для краулеров |
+| Prerender блога | [`prerender/site.js`](prerender/site.js) + `seo/content/*.md` |
+| `sitemap.xml`, `robots.txt` | `vite-plugin-sitemap` → `dist/` |
+| OG-картинка | `public/assets/og-default.jpg` — **абсолютный HTTPS URL** обязателен для мессенджеров |
+
+### Чеклист после деплоя
+
+1. [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) — URL `https://boikovfinance.com/`, «Scrape Again».
+2. Отправить ссылку себе в **WhatsApp** / **Telegram** — проверить картинку и ивритский текст.
+3. [Google Search Console](https://search.google.com/search-console) — добавить домен, отправить `sitemap.xml`.
+4. [Rich Results Test](https://search.google.com/test/rich-results) — FAQ / LocalBusiness.
+5. Перенести пункты из `[Unreleased]` в [CHANGELOG.md](CHANGELOG.md) (см. «Как вести»).
 
 ---
 
@@ -103,6 +129,7 @@ boikovfinance.com/
 │   ├── assets/
 │   │   ├── logo.png            # Логотип (Navbar + Footer + сплэш)
 │   │   ├── about-photo.png     # Круглое PNG с прозрачностью (Hero)
+│   │   ├── og-default.jpg      # Open Graph 1200×630 (WhatsApp, Telegram, Facebook)
 │   │   ├── topbanner.jpeg      # Декоративный баннер перед Footer
 │   │   ├── hellsec-logo.png    # Логотип разработчика (Footer)
 │   │   ├── office1–5.*, office7–9.*  # 8 фото офиса (office6 нет)
@@ -135,6 +162,7 @@ boikovfinance.com/
 │   │   ├── Navbar.tsx              # Фиксированная шапка + мобильное меню
 │   │   ├── HeroSection.tsx         # Главный экран: текст + CTA + фото
 │   │   ├── HeroBackground.tsx      # Фон Hero: градиент + SVG-паттерн
+│   │   ├── SeoHead.tsx             # Meta + JSON-LD на главной (клиент)
 │   │   ├── ServicesSection.tsx     # 4 карточки услуг
 │   │   ├── AboutSection.tsx        # Биография советника + чеклист
 │   │   ├── TestimonialsSection.tsx # 6 отзывов клиентов
@@ -156,6 +184,7 @@ boikovfinance.com/
 │   │   └── use-mobile.tsx          # Определение мобильного viewport
 │   │
 │   └── lib/
+│       ├── seo.ts              # Константы SEO, buildHomeSeoMeta, JSON-LD
 │       ├── contact.ts          # Централизованные контактные данные
 │       ├── config.ts           # Конфигурация API_BASE_URL (runtime + env)
 │       ├── blog.ts             # Парсинг MD-файлов, фронтматтер, SEO-мета

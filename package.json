@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "generate:og": "python3 scripts/generate-og-image.py",
     "lint": "eslint --quiet ./src",
     "preview": "vite preview"
   },

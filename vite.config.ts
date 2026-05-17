@@ -3,8 +3,17 @@ import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import { vitePrerenderPlugin } from 'vite-prerender-plugin';
 import Sitemap from 'vite-plugin-sitemap';
-import { getBlogRoutes } from './prerender/blog-routes.js';
+import { getPrerenderRoutes } from './prerender/routes.js';
 import { getSitemapLastmod } from './prerender/blog-sitemap.js';
+import { buildHomeJsonLd } from './prerender/home-json-ld.js';
+import {
+  HOME_DESCRIPTION,
+  HOME_TITLE,
+  OG_IMAGE_ALT,
+  OG_IMAGE_PATH,
+  SITE_NAME,
+  SITE_URL,
+} from './prerender/seo-shared.js';
 
 function escapeHtmlAttr(str: string): string {
   return str
@@ -19,18 +28,31 @@ function escapeHtmlAttr(str: string): string {
 const SITE_HOST = 'https://boikovfinance.com';
 
 // Дефолты для index.html / OG; переопределяются через .env или GitHub Actions secrets.
-process.env.VITE_APP_TITLE ??= 'Boikov Finance';
-process.env.VITE_APP_DESCRIPTION ??=
-  'ייעוץ פיננסי ושירותים פיננסיים מקצועיים';
+process.env.VITE_SITE_URL ??= SITE_URL;
+process.env.VITE_APP_SITE_NAME ??= SITE_NAME;
+process.env.VITE_APP_TITLE ??= HOME_TITLE;
+process.env.VITE_APP_DESCRIPTION ??= HOME_DESCRIPTION;
+process.env.VITE_OG_IMAGE ??= `${SITE_URL}${OG_IMAGE_PATH}`;
+process.env.VITE_OG_IMAGE_ALT ??= OG_IMAGE_ALT;
+process.env.VITE_TWITTER_SITE ??= '@boikovfinance';
+process.env.VITE_TWITTER_CREATOR ??=
+  process.env.VITE_TWITTER_SITE ?? '@boikovfinance';
+
 process.env.VITE_APP_TITLE = escapeHtmlAttr(process.env.VITE_APP_TITLE);
 process.env.VITE_APP_DESCRIPTION = escapeHtmlAttr(
   process.env.VITE_APP_DESCRIPTION
 );
+process.env.VITE_APP_SITE_NAME = escapeHtmlAttr(process.env.VITE_APP_SITE_NAME);
+process.env.VITE_OG_IMAGE_ALT = escapeHtmlAttr(process.env.VITE_OG_IMAGE_ALT);
+process.env.VITE_HOME_JSON_LD = JSON.stringify(buildHomeJsonLd()).replace(
+  /</g,
+  '\\u003c'
+);
 process.env.VITE_APP_LOGO_URL ??= '/favicon.png';
 
 export default defineConfig(({ command }) => {
-  // SSG маршруты блога только при production build (не в dev).
-  const blogPrerenderRoutes = command === 'build' ? getBlogRoutes() : [];
+  // SSG: главная + блог только при production build (не в dev).
+  const prerenderRoutes = command === 'build' ? getPrerenderRoutes() : [];
 
   return {
     base: '/',
@@ -42,12 +64,14 @@ export default defineConfig(({ command }) => {
         lastmod: getSitemapLastmod(),
         readable: true,
         generateRobotsTxt: true,
+        priority: 0.8,
+        changefreq: 'weekly',
       }),
-      ...(blogPrerenderRoutes.length > 0
+      ...(prerenderRoutes.length > 0
         ? vitePrerenderPlugin({
             renderTarget: '#root',
-            prerenderScript: path.resolve(__dirname, 'prerender/blog.js'),
-            additionalPrerenderRoutes: blogPrerenderRoutes,
+            prerenderScript: path.resolve(__dirname, 'prerender/site.js'),
+            additionalPrerenderRoutes: prerenderRoutes,
           })
         : []),
     ],

@@ -1,4 +1,13 @@
 import { parse as parseYaml } from 'yaml';
+import {
+  HOME_DESCRIPTION,
+  OG_IMAGE_PATH,
+  SITE_NAME,
+  TWITTER_CREATOR,
+  TWITTER_SITE,
+  getAbsoluteUrl,
+  resolveMediaUrl,
+} from '@/lib/seo';
 
 type FrontmatterValue = string | string[];
 
@@ -185,33 +194,6 @@ function getBlogRoute(slug: string) {
   return `/blog/${slug}/`.replace(/\/+/g, '/');
 }
 
-function getSiteDomainUrl() {
-  const configuredUrl = import.meta.env.VITE_SITE_URL?.trim();
-  return configuredUrl ? configuredUrl.replace(/\/+$/, '') : undefined;
-}
-
-function getSiteName() {
-  return import.meta.env.VITE_APP_TITLE?.trim() || 'Atoms';
-}
-
-function getTwitterSiteHandle() {
-  return import.meta.env.VITE_TWITTER_SITE?.trim() || '@atoms';
-}
-
-function getTwitterCreatorHandle() {
-  return import.meta.env.VITE_TWITTER_CREATOR?.trim() || getTwitterSiteHandle();
-}
-
-function getAbsoluteUrl(pathname: string) {
-  const siteDomainUrl = getSiteDomainUrl();
-  if (!siteDomainUrl) {
-    return undefined;
-  }
-
-  const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
-  return `${siteDomainUrl}${normalizedPath}`;
-}
-
 function hasBlogPosts() {
   return blogPosts.length > 0;
 }
@@ -245,12 +227,10 @@ function frontmatterStringList(
 }
 
 function getPostSeoMeta(post?: BlogPost | null): SeoMeta {
-  const siteName = getSiteName();
-  const twitterSiteHandle = getTwitterSiteHandle();
-  const twitterCreatorHandle = getTwitterCreatorHandle();
-  const fallbackTitle = `Blog | ${siteName}`;
-  const fallbackDescription =
-    'This is a flexible blog starter that can be filled with Markdown content and prerendered into indexable pages.';
+  const siteName = SITE_NAME;
+  const fallbackTitle = `בלוג | ${siteName}`;
+  const fallbackDescription = HOME_DESCRIPTION;
+  const defaultOgImage = resolveMediaUrl(OG_IMAGE_PATH);
 
   if (!post) {
     const fallbackUrl = getAbsoluteUrl('/blog/');
@@ -261,32 +241,36 @@ function getPostSeoMeta(post?: BlogPost | null): SeoMeta {
       siteName,
       ogTitle: fallbackTitle,
       ogDescription: fallbackDescription,
+      ogImage: defaultOgImage,
       ogImageAlt: siteName,
       ogType: 'website',
       twitterCard: 'summary_large_image',
-      twitterSite: twitterSiteHandle,
-      twitterCreator: twitterCreatorHandle,
+      twitterSite: TWITTER_SITE,
+      twitterCreator: TWITTER_CREATOR,
       twitterTitle: fallbackTitle,
       twitterDescription: fallbackDescription,
+      twitterImage: defaultOgImage,
     };
   }
 
-  const title = `${post.title} | Blog`;
+  const title = `${post.title} | בלוג`;
   const description = post.description;
   const url =
-    frontmatterString(post.frontmatter, 'og_url') ??
+    resolveMediaUrl(frontmatterString(post.frontmatter, 'og_url')) ??
     getAbsoluteUrl(getBlogRoute(post.slug));
   const keywordsList =
     frontmatterStringList(post.frontmatter, 'keywords') ?? post.frontmatter.tags;
-  const ogImage =
+  const ogImagePath =
     frontmatterString(post.frontmatter, 'og_image') ??
     frontmatterString(post.frontmatter, 'hero_image');
+  const ogImage = resolveMediaUrl(ogImagePath) ?? defaultOgImage;
   const imageAlt =
     frontmatterString(post.frontmatter, 'og_image_alt') ??
     frontmatterString(post.frontmatter, 'twitter_image_alt') ??
     post.title;
-  const twitterImage =
-    frontmatterString(post.frontmatter, 'twitter_image') ?? ogImage;
+  const twitterImagePath =
+    frontmatterString(post.frontmatter, 'twitter_image') ?? ogImagePath;
+  const twitterImage = resolveMediaUrl(twitterImagePath) ?? ogImage;
 
   return {
     title,
@@ -305,10 +289,9 @@ function getPostSeoMeta(post?: BlogPost | null): SeoMeta {
       frontmatterString(post.frontmatter, 'twitter_card') ??
       (twitterImage ? 'summary_large_image' : 'summary'),
     twitterSite:
-      frontmatterString(post.frontmatter, 'twitter_site') ?? twitterSiteHandle,
+      frontmatterString(post.frontmatter, 'twitter_site') ?? TWITTER_SITE,
     twitterCreator:
-      frontmatterString(post.frontmatter, 'twitter_creator') ??
-      twitterCreatorHandle,
+      frontmatterString(post.frontmatter, 'twitter_creator') ?? TWITTER_CREATOR,
     twitterTitle:
       frontmatterString(post.frontmatter, 'twitter_title') ?? title,
     twitterDescription:

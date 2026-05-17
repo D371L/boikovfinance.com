@@ -7,14 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>%VITE_APP_TITLE%</title>
     <meta name="description" content="%VITE_APP_DESCRIPTION%" />
-    <meta name="author" content="Boikov Finance" />
+    <meta name="author" content="%VITE_APP_SITE_NAME%" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="%VITE_SITE_URL%/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap"
+      as="style"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
     <meta property="og:title" content="%VITE_APP_TITLE%" />
     <meta property="og:description" content="%VITE_APP_DESCRIPTION%" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta property="og:site_name" content="%VITE_APP_SITE_NAME%" />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:image" content="%VITE_OG_IMAGE%" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="%VITE_OG_IMAGE_ALT%" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="%VITE_TWITTER_SITE%" />
+    <meta name="twitter:creator" content="%VITE_TWITTER_CREATOR%" />
+    <meta name="twitter:title" content="%VITE_APP_TITLE%" />
+    <meta name="twitter:description" content="%VITE_APP_DESCRIPTION%" />
+    <meta name="twitter:image" content="%VITE_OG_IMAGE%" />
+    <meta name="twitter:image:alt" content="%VITE_OG_IMAGE_ALT%" />
+
+    <script type="application/ld+json">%VITE_HOME_JSON_LD%</script>
   </head>
 
   <body>
@@ -28,7 +55,7 @@
         <img
           class="app-splash__logo"
           src="/assets/logo.png"
-          alt=""
+          alt="בויקוב משכנתאות"
           width="132"
           height="132"
           decoding="async"

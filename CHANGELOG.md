@@ -36,6 +36,9 @@
 
 ### Added
 
+- SEO: полный Open Graph и Twitter на главной, `og-default.jpg` (1200×630), canonical, JSON-LD (WebSite, ProfessionalService, Person, FAQPage).
+- `src/lib/seo.ts`, `SeoHead`, prerender главной `/` в `prerender/site.js`; абсолютные OG-URL в блоге.
+- `.env.example`, SEO-переменные в CI (`deploy-pages.yml`); скрипт `pnpm run generate:og`.
 - `HeroBackground` — светлый градиент, SVG-сетка и линия «роста», маска слабее у фото Hero.
 - `TopBanner` — декоративный `topbanner.jpeg` между FAQ и Footer.
 - Сплэш-экран при первой загрузке (`#app-splash` в `index.html`).
@@ -43,6 +46,7 @@
 
 ### Changed
 
+- Title/description на иврите; README — секция SEO и чеклист после деплоя.
 - CHANGELOG: раздел «Как вести» и напоминание в README о переносе из `[Unreleased]`.
 - Hero: PNG `about-photo.png` без белых подложек и круговой обрезки; `object-contain`, высота 480px.
 - About: фото `herologo.jpeg` (раньше пути были перепутаны с Hero).
