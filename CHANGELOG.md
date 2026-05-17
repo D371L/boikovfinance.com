@@ -36,28 +36,31 @@
 
 ### Added
 
-- SEO: полный Open Graph и Twitter на главной, `og-default.jpg` (1200×630), canonical, JSON-LD (WebSite, ProfessionalService, Person, FAQPage).
-- `src/lib/seo.ts`, `SeoHead`, prerender главной `/` в `prerender/site.js`; абсолютные OG-URL в блоге.
-- `.env.example`, SEO-переменные в CI (`deploy-pages.yml`); скрипт `pnpm run generate:og`.
-- `HeroBackground` — светлый градиент, SVG-сетка и линия «роста», маска слабее у фото Hero.
-- `TopBanner` — декоративный `topbanner.jpeg` между FAQ и Footer.
-- Сплэш-экран при первой загрузке (`#app-splash` в `index.html`).
-- Офисные фото `office7–9`; кастомный скроллбар (WebKit + Firefox).
-
 ### Changed
-
-- Title/description на иврите; README — секция SEO и чеклист после деплоя.
-- CHANGELOG: раздел «Как вести» и напоминание в README о переносе из `[Unreleased]`.
-- Hero: PNG `about-photo.png` без белых подложек и круговой обрезки; `object-contain`, высота 480px.
-- About: фото `herologo.jpeg` (раньше пути были перепутаны с Hero).
-- Footer: телефон `+972 54-331-9843`, адрес, email, соцсети (Facebook, Instagram, YouTube, TikTok), логотип HellSec.
-- Navbar: увеличенные размеры, фиксированная шапка, мобильное меню с оверлеем.
-- README: актуальная структура, секции, ассеты в `public/`.
 
 ### Fixed
 
-- Prerender блога (`vite-prerender-plugin`) при сборке.
-- RTL для телефона и email в Footer (`dir="ltr"` на тексте).
+### Removed
+
+## [2026-05-16] — SEO, Hero, документация
+
+### Added
+
+- SEO: Open Graph и Twitter на главной, `og-default.jpg` (1200×630), canonical, JSON-LD (WebSite, ProfessionalService, Person, FAQPage).
+- `src/lib/seo.ts`, `SeoHead`, `usePageSeo`, `src/data/faqs.ts`; prerender `/` в `prerender/site.js`; абсолютные OG-URL в блоге.
+- `.env.example`, SEO env в CI (`deploy-pages.yml`); `pnpm run generate:og` (только локально, без Pillow в CI).
+- `HeroBackground` — градиент, SVG-сетка, линия «роста», маска слабее у фото.
+- `TopBanner`, сплэш `#app-splash`, офисные фото `office7–9`, кастомный скроллбар.
+
+### Changed
+
+- Title/description на иврите; README (SEO, деплой, структура `prerender/`, блог vs SPA).
+- Hero: `about-photo.png` без подложек и круговой обрезки; mobile/desktop размеры.
+- About: `herologo.jpeg`; Footer (контакты, соцсети, HellSec снизу); Navbar.
+
+### Fixed
+
+- Prerender блога при сборке; RTL телефона/email в Footer.
 
 ## [2025-05] — начальная версия лендинга
 

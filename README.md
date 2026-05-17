@@ -1,7 +1,7 @@
 # boikovfinance.com
 
 Лендинг-сайт ипотечного советника **Артёма Бойкова** (Израиль).  
-Одностраничный сайт на иврите с RTL-лейаутом, блог-системой для SEO и автодеплоем на GitHub Pages.
+Одностраничный сайт на иврите с RTL-лейаутом, базовым SEO (OG, JSON-LD, prerender главной), опциональным блогом из Markdown и автодеплоем на GitHub Pages.
 
 История изменений: [CHANGELOG.md](CHANGELOG.md) — новое пишем в `[Unreleased]`, перед релизом/пушем в `main` переносим в секцию с датой (см. «Как вести» в начале файла).
 
@@ -35,9 +35,10 @@ pnpm run dev          # http://localhost:3000
 Другие команды:
 
 ```shell
-pnpm run build        # Сборка в dist/
+pnpm run build        # Сборка в dist/ (prerender / и /blog/)
 pnpm run preview      # Превью собранного dist/ локально
 pnpm run lint         # ESLint проверка src/
+pnpm run generate:og  # Пересобрать public/assets/og-default.jpg (локально, нужен Pillow)
 ```
 
 ---
@@ -52,10 +53,13 @@ pnpm run lint         # ESLint проверка src/
 
 ### Автодеплой
 
-Файл `.github/workflows/deploy.yml` при пуше в `main` или `master`:
-1. Устанавливает Node 22 + pnpm 9
-2. Запускает `pnpm install --frozen-lockfile` + `pnpm run build`
-3. Публикует содержимое `dist/` через `actions/deploy-pages`
+Файл [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) при пуше в `main` или `master`:
+
+1. Checkout, Node 22, pnpm 9, `pnpm install --frozen-lockfile`
+2. `pnpm run build` с SEO-переменными (`VITE_SITE_URL`, ивритский title/description, `VITE_OG_IMAGE`, …)
+3. Публикация `dist/` через `actions/deploy-pages`
+
+OG-картинка **не генерируется в CI** — в репозитории уже лежит `public/assets/og-default.jpg`. После смены логотипа: `pnpm run generate:og` локально и коммит.
 
 Ручной запуск: **Actions → Deploy to GitHub Pages → Run workflow**.
 
@@ -106,8 +110,8 @@ pnpm run lint         # ESLint проверка src/
 1. [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) — URL `https://boikovfinance.com/`, «Scrape Again».
 2. Отправить ссылку себе в **WhatsApp** / **Telegram** — проверить картинку и ивритский текст.
 3. [Google Search Console](https://search.google.com/search-console) — добавить домен, отправить `sitemap.xml`.
-4. [Rich Results Test](https://search.google.com/test/rich-results) — FAQ / LocalBusiness.
-5. Перенести пункты из `[Unreleased]` в [CHANGELOG.md](CHANGELOG.md) (см. «Как вести»).
+4. [Rich Results Test](https://search.google.com/test/rich-results) — FAQ / ProfessionalService.
+5. После крупных правок — перенос из `[Unreleased]` в [CHANGELOG.md](CHANGELOG.md) (см. «Как вести»).
 
 ---
 
@@ -117,18 +121,27 @@ pnpm run lint         # ESLint проверка src/
 boikovfinance.com/
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml          # CI/CD: сборка + деплой на GitHub Pages
+│       └── deploy-pages.yml    # CI/CD: сборка + деплой на GitHub Pages
 │
-├── prerender/                  # Node.js скрипты для SSG блога (только при сборке)
-│   ├── blog.js                 # Рендерит HTML каждого маршрута /blog/*
-│   ├── blog-routes.js          # Собирает список маршрутов из seo/content/
-│   ├── blog-sitemap.js         # Собирает lastmod дат для sitemap
-│   └── utils.js                # Общие утилиты: путь к seo/content/, обход .md файлов
+├── scripts/
+│   └── generate-og-image.py    # Локально: OG 1200×630 (pip install Pillow)
+│
+├── prerender/                  # SSG при сборке (vite-prerender-plugin)
+│   ├── site.js                 # Prerender `/` и `/blog/*`, head meta для блога
+│   ├── routes.js               # Список маршрутов: / + blog
+│   ├── blog-routes.js          # Маршруты из seo/content/
+│   ├── blog-sitemap.js         # lastmod для sitemap.xml
+│   ├── home-html.js            # Скрытый HTML с h1 для краулеров (главная)
+│   ├── home-json-ld.js         # JSON-LD для подстановки в index.html
+│   ├── seo-shared.js           # Константы URL/OG для prerender (Node)
+│   ├── faqs.js                 # Тексты FAQ (синхрон с src/data/faqs.ts)
+│   ├── utils.js                # Обход seo/content/*.md
+│   └── blog.js                 # Устаревший; используйте site.js
 │
 ├── public/                     # Статика для dev и build (копируется в dist/ as-is)
 │   ├── assets/
 │   │   ├── logo.png            # Логотип (Navbar + Footer + сплэш)
-│   │   ├── about-photo.png     # Круглое PNG с прозрачностью (Hero)
+│   │   ├── about-photo.png     # PNG с прозрачностью (Hero)
 │   │   ├── og-default.jpg      # Open Graph 1200×630 (WhatsApp, Telegram, Facebook)
 │   │   ├── topbanner.jpeg      # Декоративный баннер перед Footer
 │   │   ├── hellsec-logo.png    # Логотип разработчика (Footer)
@@ -139,8 +152,8 @@ boikovfinance.com/
 │   │   ├── herologo.jpeg       # Фото советника (секция "О себе")
 │   │   └── client-avatars-group.png  # Аватары клиентов (Hero)
 │   ├── favicon.png
-│   ├── CNAME                   # boikovfinance.com — кастомный домен GitHub Pages
-│   └── robots.txt              # Allow: * (открыт для всех поисковиков)
+│   └── CNAME                   # boikovfinance.com — кастомный домен GitHub Pages
+│   └── robots.txt              # Базовый Allow; при build дополняется sitemap в dist/
 │
 ├── seo/
 │   └── content/                # Markdown-статьи блога (создать при необходимости)
@@ -159,10 +172,11 @@ boikovfinance.com/
 │   │       └── BlogPostPage.tsx    # Страница статьи /blog/:slug/ + SEO-мета динамически
 │   │
 │   ├── components/
+│   │   ├── SeoHead.tsx             # JSON-LD на главной (клиент; дубль в index.html)
+│   │   ├── JsonLd.tsx              # Вставка application/ld+json
 │   │   ├── Navbar.tsx              # Фиксированная шапка + мобильное меню
 │   │   ├── HeroSection.tsx         # Главный экран: текст + CTA + фото
 │   │   ├── HeroBackground.tsx      # Фон Hero: градиент + SVG-паттерн
-│   │   ├── SeoHead.tsx             # Meta + JSON-LD на главной (клиент)
 │   │   ├── ServicesSection.tsx     # 4 карточки услуг
 │   │   ├── AboutSection.tsx        # Биография советника + чеклист
 │   │   ├── TestimonialsSection.tsx # 6 отзывов клиентов
@@ -179,8 +193,12 @@ boikovfinance.com/
 │   │   │   └── MarkdownArticle.tsx    # Рендер Markdown через markdown-to-jsx
 │   │   └── ui/                     # shadcn/ui компоненты (Radix UI)
 │   │
+│   ├── data/
+│   │   └── faqs.ts                 # Вопросы FAQ (общие с JSON-LD и FAQSection)
+│   │
 │   ├── hooks/
 │   │   ├── useScrollAnimation.ts   # IntersectionObserver: анимация при скролле
+│   │   ├── usePageSeo.ts           # Обновление meta/canonical в клиенте
 │   │   └── use-mobile.tsx          # Определение мобильного viewport
 │   │
 │   └── lib/
@@ -190,9 +208,10 @@ boikovfinance.com/
 │       ├── blog.ts             # Парсинг MD-файлов, фронтматтер, SEO-мета
 │       └── utils.ts            # cn() утилита для объединения классов Tailwind
 │
-├── index.html                  # Шаблон HTML: шрифт Heebo, OG-теги, сплэш-экран
+├── index.html                  # Heebo, OG/Twitter, canonical, JSON-LD, сплэш
+├── .env.example                # Пример env для локальной сборки
 ├── vite.config.ts              # Vite: env-дефолты, sitemap, prerender, vendor-чанки
-├── CHANGELOG.md                # История изменений; см. «Как вести» — перенос из [Unreleased]
+├── CHANGELOG.md                # История изменений; см. «Как вести»
 ├── tailwind.config.ts          # Tailwind: шрифты, цвета, плагины
 ├── tsconfig.json               # TypeScript конфиг
 ├── components.json             # shadcn/ui конфиг
@@ -208,7 +227,7 @@ boikovfinance.com/
 | # | Компонент | Секция (`id`) | Описание |
 |---|---|---|---|
 | 1 | `Navbar` | — | Фиксированная шапка (`fixed`, blur). Якорные ссылки. Мобильное меню: оверлей + панель под шапкой. |
-| 2 | `HeroSection` + `HeroBackground` | `#hero` | Светлый фон с тонкой сеткой и линией «роста» (SVG). PNG-фото (`about-photo.png`, `object-contain`, высота 480px). Имя, должность, CTA WhatsApp, блок 500+ клиентов. |
+| 2 | `HeroSection` + `HeroBackground` | `#hero` | Фон: градиент + SVG-сетка. Фото `about-photo.png` (`object-contain`; mobile ~240px, desktop 480px). CTA WhatsApp, 500+ клиентов. |
 | 3 | `ServicesSection` | `#services` | 4 карточки: ипотека на покупку жилья, рефинансирование, консолидация займов, «Мехир ле-Миштакен». |
 | 4 | `AboutSection` | `#about` | Биография, фото `herologo.jpeg`, чеклист, CTA. Тёмный фон `#0d1b4a`. |
 | 5 | `TestimonialsSection` | `#testimonials` | 6 отзывов клиентов в сетке 3×2. |
@@ -216,7 +235,7 @@ boikovfinance.com/
 | 7 | `OfficeSection` | `#office` | Карусель из 8 фото (`office1–5`, `office7–9`). Лайтбокс. Ссылка на yhf.co.il. |
 | 8 | `FAQSection` | `#faq` | Аккордеон с 6 частыми вопросами (Radix UI Accordion). |
 | 9 | `TopBanner` | — | Полноширинный `topbanner.jpeg` между FAQ и Footer (декор, без ссылки). |
-| 10 | `Footer` | — | Контакты, соцсети (Facebook, Instagram, YouTube, TikTok), логотип, HellSec в подвале. |
+| 10 | `Footer` | — | Контакты, соцсети (Facebook, Instagram, YouTube, TikTok), логотип; в подвале «Developed by HellSec» + логотип снизу. |
 | — | `FloatingActionButtons` | — | WhatsApp (всегда) + «наверх» (после скролла ниже Hero). |
 
 > **Статика:** файлы для сайта кладутся в `public/`. Папка `dist/` — только результат `pnpm run build`; правки в `dist/assets/` не попадают в dev и не коммитятся.
@@ -224,6 +243,12 @@ boikovfinance.com/
 ---
 
 ## Ключевые модули
+
+### `src/lib/seo.ts` и `src/components/SeoHead.tsx`
+
+- Константы: `SITE_URL`, `HOME_TITLE`, `HOME_DESCRIPTION`, `OG_IMAGE_PATH`
+- `buildHomeSeoMeta()` / `buildHomeJsonLd()` — главная страница
+- `usePageSeo` в `SeoHead` синхронизирует meta при работе SPA (дублирует `index.html` после сборки)
 
 ### `src/lib/contact.ts` — контактные данные
 
@@ -337,18 +362,20 @@ src/lib/blog.ts — парсит фронтматтер (YAML), сортируе
        └──▶ BlogPostPage   → /blog/:slug/
                 │
                 ▼ (при сборке: pnpm run build)
-        prerender/blog.js  — renderToString каждого маршрута
-        prerender/blog-routes.js — собирает маршруты из файловой системы
-        prerender/blog-sitemap.js — собирает lastmod для sitemap.xml
+        prerender/site.js       — `/` (fallback h1) и `/blog/*` (renderToString)
+        prerender/routes.js     — маршруты: / + blog
+        prerender/blog-sitemap.js — lastmod для sitemap.xml
 ```
 
-**При сборке** `vite-prerender-plugin` генерирует статический HTML для каждого маршрута `/blog/*`. Страницы содержат `<meta name="prerender-static-page" content="blog">` — по этому признаку `main.tsx` пропускает гидратацию React (чистый HTML для краулеров).
+**Главная (`/`):** в `dist/index.html` уже есть meta, JSON-LD и скрытый `<h1>` для краулеров; React монтируется как обычно.
 
-**В браузере** React SPA перехватывает навигацию: `BlogPostPage` динамически обновляет `<title>` и все мета-теги при переходе между статьями.
+**Блог (`/blog/*`):** статический HTML; `<meta name="prerender-static-page" content="blog">` — `main.tsx` **не** монтирует React (только HTML для SEO).
 
-**Автоматически генерируются:**
-- `robots.txt` — открыт для всех поисковиков
-- `sitemap.xml` — с lastmod датами по `mtime` MD-файлов
+**Блог в SPA:** маршруты `/blog` в `App.tsx` пока не подключены — на проде работают prerender-страницы из `dist/blog/`. Статьи добавляются в `seo/content/*.md` (папка может быть пустой).
+
+**При сборке в `dist/`:**
+- `robots.txt` (включая `Sitemap: …`)
+- `sitemap.xml` — `/`, `/blog`, статьи; `lastmod` по mtime `.md`
 
 ### Поддерживаемые поля фронтматтера
 
