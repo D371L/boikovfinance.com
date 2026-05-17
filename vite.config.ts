@@ -15,8 +15,10 @@ function escapeHtmlAttr(str: string): string {
     .replace(/'/g, '&#39;');
 }
 
+/** Публичный URL для sitemap.xml и OG (GitHub Pages + CNAME). */
 const SITE_HOST = 'https://boikovfinance.com';
 
+// Дефолты для index.html / OG; переопределяются через .env или GitHub Actions secrets.
 process.env.VITE_APP_TITLE ??= 'Boikov Finance';
 process.env.VITE_APP_DESCRIPTION ??=
   'ייעוץ פיננסי ושירותים פיננסיים מקצועיים';
@@ -26,14 +28,15 @@ process.env.VITE_APP_DESCRIPTION = escapeHtmlAttr(
 );
 process.env.VITE_APP_LOGO_URL ??= '/favicon.png';
 
-// https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
+  // SSG маршруты блога только при production build (не в dev).
   const blogPrerenderRoutes = command === 'build' ? getBlogRoutes() : [];
 
   return {
     base: '/',
     plugins: [
       react(),
+      // robots.txt + sitemap.xml; lastmod блога — из mtime файлов seo/content/
       Sitemap({
         hostname: SITE_HOST,
         lastmod: getSitemapLastmod(),
@@ -56,6 +59,7 @@ export default defineConfig(({ command }) => {
     server: {
       host: '0.0.0.0',
       port: parseInt(process.env.VITE_PORT || '3000'),
+      // Заготовка под локальный API; на GitHub Pages не используется.
       proxy: {
         '/api': {
           target: `http://localhost:8000`,
@@ -67,6 +71,7 @@ export default defineConfig(({ command }) => {
     build: {
       rollupOptions: {
         output: {
+          // Разделение vendor-чанков для кэширования браузером.
           manualChunks: {
             'react-vendor': ['react', 'react-dom'],
             'router-vendor': ['react-router-dom'],

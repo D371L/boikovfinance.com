@@ -3,6 +3,8 @@
 Лендинг-сайт ипотечного советника **Артёма Бойкова** (Израиль).  
 Одностраничный сайт на иврите с RTL-лейаутом, блог-системой для SEO и автодеплоем на GitHub Pages.
 
+История изменений: [CHANGELOG.md](CHANGELOG.md) — новое пишем в `[Unreleased]`, перед релизом/пушем в `main` переносим в секцию с датой (см. «Как вести» в начале файла).
+
 ---
 
 ## Стек технологий
@@ -97,16 +99,17 @@ boikovfinance.com/
 │   ├── blog-sitemap.js         # Собирает lastmod дат для sitemap
 │   └── utils.js                # Общие утилиты: путь к seo/content/, обход .md файлов
 │
-├── public/
+├── public/                     # Статика для dev и build (копируется в dist/ as-is)
 │   ├── assets/
 │   │   ├── logo.png            # Логотип (Navbar + Footer + сплэш)
-│   │   ├── about-photo.png     # Фото советника (секция "О себе")
+│   │   ├── about-photo.png     # Круглое PNG с прозрачностью (Hero)
+│   │   ├── topbanner.jpeg      # Декоративный баннер перед Footer
 │   │   ├── hellsec-logo.png    # Логотип разработчика (Footer)
-│   │   ├── office1–9.*         # Фото офиса (секция "Офис")
+│   │   ├── office1–5.*, office7–9.*  # 8 фото офиса (office6 нет)
 │   │   ├── video1–3.mp4        # Видео (секция "Галерея")
 │   │   └── video1–3.png        # Постеры для видео
 │   ├── images/
-│   │   ├── herologo.jpeg       # Главное фото советника (Hero)
+│   │   ├── herologo.jpeg       # Фото советника (секция "О себе")
 │   │   └── client-avatars-group.png  # Аватары клиентов (Hero)
 │   ├── favicon.png
 │   ├── CNAME                   # boikovfinance.com — кастомный домен GitHub Pages
@@ -130,21 +133,23 @@ boikovfinance.com/
 │   │
 │   ├── components/
 │   │   ├── Navbar.tsx              # Фиксированная шапка + мобильное меню
-│   │   ├── HeroSection.tsx         # Главный экран: фото + заголовок + CTA
+│   │   ├── HeroSection.tsx         # Главный экран: текст + CTA + фото
+│   │   ├── HeroBackground.tsx      # Фон Hero: градиент + SVG-паттерн
 │   │   ├── ServicesSection.tsx     # 4 карточки услуг
 │   │   ├── AboutSection.tsx        # Биография советника + чеклист
 │   │   ├── TestimonialsSection.tsx # 6 отзывов клиентов
 │   │   ├── GallerySection.tsx      # Карусель видео + лайтбокс
 │   │   ├── OfficeSection.tsx       # Карусель фото офиса + лайтбокс
 │   │   ├── FAQSection.tsx          # Аккордеон с 6 вопросами
+│   │   ├── TopBanner.tsx           # Широкий JPEG-баннер (не кликабельный)
 │   │   ├── Footer.tsx              # Контакты + соцсети + копирайт
 │   │   ├── FloatingActionButtons.tsx  # Плавающие кнопки: WhatsApp + "наверх"
 │   │   ├── ScrollCarousel.tsx      # Общий компонент горизонтальной карусели
 │   │   ├── Lightbox.tsx            # Общий компонент модального лайтбокса
-│   │   └── blog/
-│   │       ├── BlogArticleLayout.tsx  # Обёртка страницы статьи
-│   │       └── MarkdownArticle.tsx    # Рендер Markdown через markdown-to-jsx
-│   │   └── ui/                 # shadcn/ui компоненты (Radix UI)
+│   │   ├── blog/
+│   │   │   ├── BlogArticleLayout.tsx  # Обёртка страницы статьи
+│   │   │   └── MarkdownArticle.tsx    # Рендер Markdown через markdown-to-jsx
+│   │   └── ui/                     # shadcn/ui компоненты (Radix UI)
 │   │
 │   ├── hooks/
 │   │   ├── useScrollAnimation.ts   # IntersectionObserver: анимация при скролле
@@ -157,7 +162,8 @@ boikovfinance.com/
 │       └── utils.ts            # cn() утилита для объединения классов Tailwind
 │
 ├── index.html                  # Шаблон HTML: шрифт Heebo, OG-теги, сплэш-экран
-├── vite.config.ts              # Vite: алиасы, sitemap, prerender, чанкинг
+├── vite.config.ts              # Vite: env-дефолты, sitemap, prerender, vendor-чанки
+├── CHANGELOG.md                # История изменений; см. «Как вести» — перенос из [Unreleased]
 ├── tailwind.config.ts          # Tailwind: шрифты, цвета, плагины
 ├── tsconfig.json               # TypeScript конфиг
 ├── components.json             # shadcn/ui конфиг
@@ -172,16 +178,19 @@ boikovfinance.com/
 
 | # | Компонент | Секция (`id`) | Описание |
 |---|---|---|---|
-| 1 | `Navbar` | — | Фиксированная шапка с blur-фоном. Якорные ссылки на секции. Мобильное меню с анимацией slide-down. |
-| 2 | `HeroSection` | `#hero` | Фото советника + имя + должность + CTA-кнопка WhatsApp. Счётчик 500+ клиентов. |
+| 1 | `Navbar` | — | Фиксированная шапка (`fixed`, blur). Якорные ссылки. Мобильное меню: оверлей + панель под шапкой. |
+| 2 | `HeroSection` + `HeroBackground` | `#hero` | Светлый фон с тонкой сеткой и линией «роста» (SVG). PNG-фото (`about-photo.png`, `object-contain`, высота 480px). Имя, должность, CTA WhatsApp, блок 500+ клиентов. |
 | 3 | `ServicesSection` | `#services` | 4 карточки: ипотека на покупку жилья, рефинансирование, консолидация займов, «Мехир ле-Миштакен». |
-| 4 | `AboutSection` | `#about` | Биография, фото, чеклист услуг, CTA. Тёмный фон `#0d1b4a`. |
+| 4 | `AboutSection` | `#about` | Биография, фото `herologo.jpeg`, чеклист, CTA. Тёмный фон `#0d1b4a`. |
 | 5 | `TestimonialsSection` | `#testimonials` | 6 отзывов клиентов в сетке 3×2. |
 | 6 | `GallerySection` | `#gallery` | Карусель из 3 видео. Клик — лайтбокс с плеером и клавиатурной навигацией. |
-| 7 | `OfficeSection` | `#office` | Карусель из 8 фото офиса. Клик — лайтбокс с навигацией. Ссылка на сайт офиса yhf.co.il. |
+| 7 | `OfficeSection` | `#office` | Карусель из 8 фото (`office1–5`, `office7–9`). Лайтбокс. Ссылка на yhf.co.il. |
 | 8 | `FAQSection` | `#faq` | Аккордеон с 6 частыми вопросами (Radix UI Accordion). |
-| 9 | `Footer` | — | 3 колонки: контакты, соцсети, логотип. Подвал с копирайтом. |
-| — | `FloatingActionButtons` | — | Плавающие кнопки внизу справа: WhatsApp (всегда) + «наверх» (после скролла за Hero). |
+| 9 | `TopBanner` | — | Полноширинный `topbanner.jpeg` между FAQ и Footer (декор, без ссылки). |
+| 10 | `Footer` | — | Контакты, соцсети (Facebook, Instagram, YouTube, TikTok), логотип, HellSec в подвале. |
+| — | `FloatingActionButtons` | — | WhatsApp (всегда) + «наверх» (после скролла ниже Hero). |
+
+> **Статика:** файлы для сайта кладутся в `public/`. Папка `dist/` — только результат `pnpm run build`; правки в `dist/assets/` не попадают в dev и не коммитятся.
 
 ---
 
@@ -215,6 +224,17 @@ const { ref, isVisible } = useScrollAnimation(threshold?);
 Подключается к контейнеру через `ref`. Как только элемент входит в область видимости — `isVisible` становится `true` (один раз). Если пользователь включил `prefers-reduced-motion` в системе — анимация пропускается, элемент сразу видим.
 
 Используется во всех секциях кроме Hero и Navbar.
+
+### `src/components/HeroBackground.tsx` — фон Hero
+
+Декоративный слой (`pointer-events-none`, `aria-hidden`), подключается из `HeroSection`:
+
+1. Диагональный градиент: крем `#f5f2eb` → `#f0f7ff` → белый.
+2. Inline SVG: сетка 48px (navy, ~4% opacity) + золотая кривая «роста» (только `lg+`).
+3. Radial mask — паттерн слабее в зоне фото (слева), сильнее у текста.
+4. Мягкое золотое пятно `blur` справа (за текстом), не под портретом.
+
+На мобиле паттерн чуть тише (`opacity-25` vs `0.35` на desktop). Под фото нет белых плашек и `object-cover` — PNG с прозрачностью.
 
 ### `src/components/ScrollCarousel.tsx` — горизонтальная карусель
 
@@ -322,12 +342,14 @@ src/lib/blog.ts — парсит фронтматтер (YAML), сортируе
 
 ### Цвета (hardcoded в компонентах)
 
-| Переменная | HEX | Применение |
+| Цвет | HEX | Применение |
 |---|---|---|
-| Тёмно-синий | `#0d1b4a` | Основной текст, фон секции "О себе" |
-| Синий | `#1a237e` | Акценты, hover-состояния |
-| Золотой | `#D4A843` | CTA-кнопки, иконки, декор |
-| Светло-голубой | `#f0f7ff` | Фон Hero, фон отзывов |
+| Тёмно-синий | `#0d1b4a` | Основной текст, фон секции «О себе» |
+| Синий | `#1a237e` | Акценты, hover, линии сетки Hero |
+| Золотой | `#D4A843` | CTA-кнопки, декор, кривая на фоне Hero |
+| Золотой (hover) | `#b8912e` | Hover CTA |
+| Крем | `#f5f2eb` | Hero-градиент, трек скроллбара |
+| Светло-голубой | `#f0f7ff` | Hero, отзывы, hover Navbar |
 
 ### Шрифт
 
@@ -340,12 +362,11 @@ src/lib/blog.ts — парсит фронтматтер (YAML), сортируе
 - `dir="rtl"` на контейнерах в `Index.tsx`, `Navbar.tsx`, `AboutSection.tsx` и др.
 - Tailwind использует логические свойства: `ms-*`, `me-*`, `ps-*`, `pe-*` где нужно
 
-### Скроллбар (только WebKit)
+### Скроллбар
 
-Кастомный скроллбар документа в `src/index.css`:
-- Обычный: кремовый трек, золотой градиент
-- При наведении на скроллбар: белый трек, сиреневый градиент
-- Firefox: `scrollbar-width: thin` с золотыми цветами
+Кастомный скроллбар документа в `src/index.css` (вне `@layer`):
+- **WebKit:** кремовый трек `#f5f2eb`, thumb — золотой градиент; при hover на полосу — белый трек, thumb — сиренево-голубой градиент
+- **Firefox:** `scrollbar-width: thin`, `scrollbar-color` (золотой thumb, кремовый track; при hover — отдельные правила в CSS)
 
 ---
 

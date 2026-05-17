@@ -7,17 +7,17 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden flex items-center pt-24"
+      className="relative min-h-0 lg:min-h-screen overflow-hidden flex items-start lg:items-center pt-24 pb-8 lg:pb-0"
     >
       <HeroBackground />
       <div className="relative z-10 max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-16 w-full">
         <div
-          className="flex flex-col-reverse lg:flex-row items-center justify-center gap-4 lg:gap-12"
+          className="flex flex-col-reverse lg:flex-row items-center justify-center gap-1 sm:gap-4 lg:gap-12"
           dir="rtl"
         >
           {/* Text Content - centered more */}
-          <div className="max-w-xl lg:max-w-lg text-center lg:text-right z-10 pb-8 lg:pb-0">
-            <div className="mb-10 sm:mb-12 space-y-4 sm:space-y-5">
+          <div className="max-w-xl lg:max-w-lg text-center lg:text-right z-10 pb-4 sm:pb-8 lg:pb-0">
+            <div className="mb-6 sm:mb-10 lg:mb-12 space-y-3 sm:space-y-5">
               <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl font-black text-[#0d1b4a] leading-[1.08] tracking-tight">
                 ארטיום בויקוב
               </h1>
@@ -71,11 +71,11 @@ export default function HeroSection() {
           </div>
 
           {/* Consultant Image - Left side in RTL */}
-          <div className="flex justify-center items-end shrink-0">
+          <div className="flex justify-center items-end shrink-0 w-full -mt-1 lg:mt-0">
             <img
               src="/assets/about-photo.png?v=5"
               alt="ארטיום בויקוב - יועץ משכנתאות"
-              className="h-[480px] w-auto max-w-[min(534px,92vw)] object-contain object-bottom"
+              className="h-[min(52vw,240px)] sm:h-[320px] lg:h-[480px] w-auto max-w-[min(280px,78vw)] sm:max-w-[min(400px,85vw)] lg:max-w-[min(534px,92vw)] object-contain object-bottom"
               width={534}
               height={480}
               fetchPriority="high"
