@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-0 lg:min-h-screen overflow-hidden flex items-start lg:items-center pt-24 pb-8 lg:pb-0"
+      className="relative min-h-0 lg:min-h-screen overflow-hidden flex items-start lg:items-center pt-[6.75rem] lg:pt-24 pb-8 lg:pb-0"
     >
       <HeroBackground />
       <div className="relative z-10 max-w-[90rem] mx-auto px-6 sm:px-10 lg:px-16 w-full">
@@ -71,7 +71,7 @@ export default function HeroSection() {
           </div>
 
           {/* Consultant Image - Left side in RTL */}
-          <div className="flex justify-center items-end shrink-0 w-full -mt-1 lg:mt-0">
+          <div className="flex justify-center items-end shrink-0 w-full mt-3 sm:mt-4 lg:mt-0">
             <img
               src="/assets/about-photo.png?v=5"
               alt="ארטיום בויקוב - יועץ משכנתאות"
