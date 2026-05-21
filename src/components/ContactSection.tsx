@@ -62,7 +62,7 @@ export default function ContactSection() {
             צור קשר
           </h2>
           <p className="text-lg text-gray-600 max-w-md mx-auto leading-relaxed">
-            מלא את הפרטים ונפתח שיחה ב-WhatsApp — ייעוץ ראשוני ללא תשלום
+            ייעוץ ראשוני ללא תשלום
           </p>
         </div>
 
@@ -171,7 +171,7 @@ export default function ContactSection() {
                 שלח
               </Button>
 
-              <p className="text-center text-sm text-gray-500 leading-relaxed">
+              <p className="text-center text-[calc(0.875rem/3)] text-gray-500 leading-tight">
                 הטופס יפתח שיחה ב-WhatsApp ({PHONE_DISPLAY})
               </p>
             </form>
