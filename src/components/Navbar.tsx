@@ -66,6 +66,12 @@ export default function Navbar() {
             >
               שאלות נפוצות
             </a>
+            <a
+              href="#contact"
+              className="text-gray-700 hover:text-[#1a237e] transition-colors font-medium text-[1.3125rem] leading-snug"
+            >
+              צור קשר
+            </a>
           </div>
 
           {/* CTA Button */}
@@ -156,6 +162,13 @@ export default function Navbar() {
             onClick={() => setMobileMenuOpen(false)}
           >
             שאלות נפוצות
+          </a>
+          <a
+            href="#contact"
+            className="block text-gray-700 hover:text-[#1a237e] transition-colors font-medium text-[1.3125rem] py-2.5 rounded-lg hover:bg-[#f0f7ff]/80 px-1 -mx-1"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            צור קשר
           </a>
           <a
             href={WHATSAPP_URL}

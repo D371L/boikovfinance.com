@@ -183,6 +183,7 @@ boikovfinance.com/
 │   │   ├── GallerySection.tsx      # Карусель видео + лайтбокс
 │   │   ├── OfficeSection.tsx       # Карусель фото офиса + лайтбокс
 │   │   ├── FAQSection.tsx          # Аккордеон с 6 вопросами
+│   │   ├── ContactSection.tsx      # Форма → WhatsApp (zod + react-hook-form)
 │   │   ├── TopBanner.tsx           # Широкий JPEG-баннер (не кликабельный)
 │   │   ├── Footer.tsx              # Контакты + соцсети + копирайт
 │   │   ├── FloatingActionButtons.tsx  # Плавающие кнопки: WhatsApp + "наверх"
@@ -203,7 +204,8 @@ boikovfinance.com/
 │   │
 │   └── lib/
 │       ├── seo.ts              # Константы SEO, buildHomeSeoMeta, JSON-LD
-│       ├── contact.ts          # Централизованные контактные данные
+│       ├── contact.ts          # WhatsApp URL, openWhatsAppInquiry()
+│       ├── contact-form-schema.ts  # Zod-схема формы контакта
 │       ├── config.ts           # Конфигурация API_BASE_URL (runtime + env)
 │       ├── blog.ts             # Парсинг MD-файлов, фронтматтер, SEO-мета
 │       └── utils.ts            # cn() утилита для объединения классов Tailwind
@@ -234,8 +236,9 @@ boikovfinance.com/
 | 6 | `GallerySection` | `#gallery` | Карусель из 3 видео. Клик — лайтбокс с плеером и клавиатурной навигацией. |
 | 7 | `OfficeSection` | `#office` | Карусель из 8 фото (`office1–5`, `office7–9`). Лайтбокс. Ссылка на yhf.co.il. |
 | 8 | `FAQSection` | `#faq` | Аккордеон с 6 частыми вопросами (Radix UI Accordion). |
-| 9 | `TopBanner` | — | Полноширинный `topbanner.jpeg` между FAQ и Footer (декор, без ссылки). |
-| 10 | `Footer` | — | Контакты, соцсети (Facebook, Instagram, YouTube, TikTok), логотип; в подвале «Developed by HellSec» + логотип снизу. |
+| 9 | `ContactSection` | `#contact` | Форма (שם, טלפון, מייל, הודעה) → открывает WhatsApp с предзаполненным текстом (`wa.me?text=…`). |
+| 10 | `TopBanner` | — | Полноширинный `topbanner.jpeg` между формой и Footer (декор, без ссылки). |
+| 11 | `Footer` | — | Контакты, соцсети (Facebook, Instagram, YouTube, TikTok), логотип; в подвале «Developed by HellSec» + логотип снизу. |
 | — | `FloatingActionButtons` | — | WhatsApp (всегда) + «наверх» (после скролла ниже Hero). |
 
 > **Статика:** файлы для сайта кладутся в `public/`. Папка `dist/` — только результат `pnpm run build`; правки в `dist/assets/` не попадают в dev и не коммитятся.
@@ -258,6 +261,7 @@ boikovfinance.com/
 export const WHATSAPP_URL = "https://wa.me/972543319843";
 export const PHONE_DISPLAY = "+972 54-331-9843";
 export const PHONE_TEL = "+972543319843";
+// buildWhatsAppInquiryUrl / openWhatsAppInquiry — форма ContactSection
 ```
 
 ### `src/lib/config.ts` — конфигурация API

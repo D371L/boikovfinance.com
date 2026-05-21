@@ -36,6 +36,8 @@
 
 ### Added
 
+- `ContactSection` после FAQ: форма (שם, טלפון, מייל, הודעה) открывает WhatsApp с предзаполненным текстом; `contact-form-schema.ts`, якорь `#contact` в Navbar.
+
 ### Changed
 
 ### Fixed
