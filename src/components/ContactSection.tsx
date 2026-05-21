@@ -171,7 +171,7 @@ export default function ContactSection() {
                 שלח
               </Button>
 
-              <p className="text-center text-[calc(0.875rem/3)] text-gray-500 leading-tight">
+              <p className="text-center text-xs text-gray-500 leading-snug">
                 הטופס יפתח שיחה ב-WhatsApp ({PHONE_DISPLAY})
               </p>
             </form>
