@@ -1,38 +1,41 @@
-import { Home, RefreshCw, Layers, Award } from "lucide-react";
+import { Search, TrendingUp, Handshake, Target, Building2 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const services = [
   {
-    icon: Home,
-    title: "ליווי למשכנתא לרכישת דירה",
-    description:
-      "קונים דירה? זה הצעד הכלכלי הכי גדול בחיים – ואני כאן כדי שתעשו אותו נכון. אני בונה עבורך תמהיל משכנתא חכם, מנהל עבורך את המשא ומתן מול הבנקים ודואג שתקבל את התנאים הטובים ביותר – עם חיסכון משמעותי לאורך השנים.",
+    icon: Search,
+    title: "איתור נכסים מתחת למחיר השוק",
+    description: "מציאת עסקאות עם פוטנציאל לרווח כבר בקנייה.",
     accent: "from-[#1a237e] to-[#3949ab]",
     bgAccent: "bg-[#1a237e]/5",
   },
   {
-    icon: RefreshCw,
-    title: "מחזור משכנתא",
-    description:
-      "ייתכן שהמשכנתא שלך כבר לא מתאימה לך – וזה עולה לך כסף. אני בודק עבורך את התנאים הקיימים ומאתר הזדמנויות לחיסכון, הורדת החזר חודשי או קיצור תקופה – לפעמים מדובר בעשרות ואף מאות אלפי שקלים.",
+    icon: TrendingUp,
+    title: "בדיקת כדאיות העסקה",
+    description: "ניתוח מחירי שוק, עלויות, תשואה ופוטנציאל השבחה.",
     accent: "from-[#42a5f5] to-[#1e88e5]",
     bgAccent: "bg-[#42a5f5]/5",
   },
   {
-    icon: Layers,
-    title: "איחוד הלוואות",
-    description:
-      "יותר מדי הלוואות? תשלומים שמכבידים עליך? אני מאחד עבורך את כל ההתחייבויות להלוואה אחת מסודרת עם החזר חודשי נוח יותר, כדי שתוכל לחזור לשליטה כלכלית ולנשום לרווחה.",
+    icon: Handshake,
+    title: "ליווי מלא ברכישת הנכס",
+    description: "משלב החיפוש והמשא ומתן ועד לסגירת העסקה.",
     accent: "from-[#D4A843] to-[#b8912e]",
     bgAccent: "bg-[#D4A843]/5",
   },
   {
-    icon: Award,
-    title: "ליווי לזוכי מחיר למשתכן",
-    description:
-      "זכית בדירה? מצוין – עכשיו צריך לעשות את זה נכון. אני מלווה אותך לאורך כל התהליך – מתכנון המשכנתא ועד קבלת האישורים – כדי שתיכנס לדירה בתנאים הכי טובים ובביטחון מלא.",
+    icon: Target,
+    title: "בניית אסטרטגיית השקעה",
+    description: "התאמת העסקה להון העצמי ולמטרות של המשקיע.",
     accent: "from-[#2e7d32] to-[#43a047]",
     bgAccent: "bg-[#2e7d32]/5",
+  },
+  {
+    icon: Building2,
+    title: "ליווי מימון ומשכנתא",
+    description: "בניית פתרון מימון שמתאים לעסקה ולמשקיע.",
+    accent: "from-[#7b1fa2] to-[#9c27b0]",
+    bgAccent: "bg-[#7b1fa2]/5",
   },
 ];
 
@@ -63,10 +66,12 @@ export default function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
+            const isLast = index === services.length - 1;
+            const isOddTotal = services.length % 2 !== 0;
             return (
               <div
                 key={index}
-                className="group relative bg-white rounded-3xl p-7 sm:p-9 border border-gray-100/80 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-gray-200/60 hover:-translate-y-2 hover:border-transparent overflow-hidden"
+                className={`group relative bg-white rounded-3xl p-7 sm:p-9 border border-gray-100/80 shadow-sm transition-all duration-500 hover:shadow-2xl hover:shadow-gray-200/60 hover:-translate-y-2 hover:border-transparent overflow-hidden${isLast && isOddTotal ? " md:col-span-2 md:max-w-[calc(50%-1rem)] md:mx-auto" : ""}`}
               >
                 {/* Background gradient on hover */}
                 <div
