@@ -4,9 +4,11 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { WHATSAPP_URL } from "@/lib/contact";
 
 const checklist = [
-  "ליווי אישי מהשלב הראשון ועד קבלת המפתח, עד הפרט האחרון",
-  "ניהול משא ומתן מול הבנקים",
-  "פתרונות פיננסיים בהתאמה אישית",
+  "איתור נכסים מתחת למחיר השוק",
+  "ניתוח ובדיקת כדאיות העסקה",
+  "ניהול משא ומתן",
+  "בניית אסטרטגיית מימון ומשכנתא",
+  "ליווי אישי עד לסגירת העסקה",
 ];
 
 export default function AboutSection() {
@@ -43,26 +45,29 @@ export default function AboutSection() {
           <div className="w-full lg:w-7/12 text-right space-y-8">
             <header className="space-y-3 pb-2 border-b border-white/10">
               <p className="text-[#D4A843] font-bold text-lg sm:text-xl tracking-tight">
-                ארטיום בויקוב | Finance
+                ארטיום בויקוב | FINDERS
               </p>
               <p className="text-white text-lg sm:text-xl font-semibold leading-snug">
-                יועץ משכנתאות מבית ייחוד משכנתאות
+                מלווה משקיעי נדל״ן בחיפה והסביבה
               </p>
               <p className="text-white/65 text-sm sm:text-base leading-relaxed pr-3 border-r-2 border-[#D4A843]/40">
-                לימודים ותעודה מטעם מכללת פוקוס
+                לא מחפש לכם עוד דירה — מחפש לכם את העסקה הנכונה.
               </p>
             </header>
 
             <div className="space-y-5 text-white/85 text-base sm:text-lg leading-relaxed">
               <p>
-                עם ניסיון של מעל שנתיים בתחום והיקף פעילות של כ-40 מיליון ₪
-                בחודש – אני יודע בדיוק איך להשיג עבורך את המשכנתא הנכונה
-                בתנאים הטובים ביותר.
+                אני ארטיום בויקוב, עובד FINDERS, ומתמחה באיתור וליווי עסקאות נדל״ן
+                למשקיעים באזור חיפה ונשר. בוגר קורס פוקוס למשכנתאות.
               </p>
               <p>
-                בין אם אתה רוכש דירה, ממחזר משכנתא או רוצה לעשות סדר
-                בהלוואות – אני מלווה אותך אישית, חוסך לך כסף ודואג שתקבל
-                החלטות חכמות ובטוחות.
+                ההתמחות שלי היא לזהות נכסים עם פער משמעותי ממחיר השוק, לנתח את
+                העסקה לעומק ולנהל משא ומתן במטרה לייצר למשקיע יתרון כבר ביום הרכישה.
+              </p>
+              <p>
+                אני מאמין שהרווח בנדל״ן מתחיל קודם כל בקנייה נכונה. לכן לפני כל
+                עסקה אני בודק את המספרים, עסקאות דומות באזור, פוטנציאל ההשבחה
+                והעלויות הצפויות.
               </p>
             </div>
 
@@ -84,18 +89,16 @@ export default function AboutSection() {
             </ul>
 
             <p className="text-[#D4A843] font-bold text-xl sm:text-2xl leading-snug tracking-tight">
-              פחות ריביות, יותר שקט נפשי
+              המטרה שלי פשוטה:
             </p>
 
             <div className="space-y-5 text-white/80 text-base sm:text-lg leading-relaxed">
               <p>
-                אני מאמין שמשכנתא היא אחת ההחלטות הכלכליות והחשובות בחיים
-                ולכן לקוח אצלי הוא קודם כל חבר ומקבל יחס אישי וליווי אישי
-                ושקיפות מלאה והתאמה מדויקת לצרכים שלו.
+                לעזור למשקיעים לקנות חכם יותר, במחיר נכון יותר ולבנות את
+                ההון שלהם באמצעות נדל״ן.
               </p>
-              <p>
-                המטרה שלי היא לא רק להשיג ריביות טובות אלא לבנות ביטחון
-                כלכלי ושקט נפשי לאורך כל השנים.
+              <p className="text-white/60 text-sm sm:text-base italic">
+                FINDERS — מוצאים את העסקה שאחרים מפספסים.
               </p>
             </div>
 
