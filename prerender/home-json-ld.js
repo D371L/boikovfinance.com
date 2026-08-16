@@ -39,10 +39,10 @@ export function buildHomeJsonLd() {
           addressLocality: 'טירת הכרמל',
           addressCountry: 'IL',
         },
-        areaServed: {
-          '@type': 'Country',
-          name: 'Israel',
-        },
+        areaServed: [
+          { '@type': 'City', name: 'חיפה' },
+          { '@type': 'City', name: 'נשר' },
+        ],
         availableLanguage: ['Hebrew'],
         priceRange: '$$',
         description: HOME_DESCRIPTION,
@@ -51,7 +51,7 @@ export function buildHomeJsonLd() {
         '@type': 'Person',
         '@id': `${url}#person`,
         name: SITE_NAME,
-        jobTitle: 'יועץ משכנתאות',
+        jobTitle: 'מלווה משקיעי נדל״ן',
         url,
         image,
         telephone: PHONE_TEL,

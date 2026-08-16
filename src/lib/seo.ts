@@ -6,21 +6,21 @@ export const SITE_URL = (
 ).replace(/\/+$/, '');
 
 export const SITE_NAME =
-  import.meta.env.VITE_APP_SITE_NAME?.trim() || 'ארטיום בויקוב';
+  import.meta.env.VITE_APP_SITE_NAME?.trim() || 'ארטיום בויקוב | FINDERS';
 
 export const HOME_TITLE =
   import.meta.env.VITE_APP_TITLE?.trim() ||
-  'ארטיום בויקוב | יועץ משכנתאות בישראל';
+  'ארטיום בויקוב | מלווה משקיעי נדל״ן בחיפה | FINDERS';
 
 export const HOME_DESCRIPTION =
   import.meta.env.VITE_APP_DESCRIPTION?.trim() ||
-  'יועץ משכנתאות מנוסה שעוזר לך להשיג את הריבית הנמוכה ביותר. ייעוץ ראשוני ללא תשלום וללא התחייבות. ליווי אישי מול כל הבנקים.';
+  'מלווה משקיעי נדל״ן בחיפה והסביבה. מאתר נכסים מתחת למחיר השוק, בודק כדאיות עסקאות ומנהל משא ומתן. FINDERS – מוצאים את העסקה שאחרים מפספסים.';
 
 export const OG_IMAGE_PATH = '/assets/og-default.jpg';
 
 export const OG_IMAGE_ALT =
   import.meta.env.VITE_OG_IMAGE_ALT?.trim() ||
-  'ארטיום בויקוב – יועץ משכנתאות, ייעוץ משכנתאות בישראל';
+  'ארטיום בויקוב – מלווה משקיעי נדל״ן, FINDERS חיפה';
 
 export const TWITTER_SITE =
   import.meta.env.VITE_TWITTER_SITE?.trim() || '@boikovfinance';
@@ -29,8 +29,7 @@ export const TWITTER_CREATOR =
   import.meta.env.VITE_TWITTER_CREATOR?.trim() || TWITTER_SITE;
 
 export const BUSINESS_ADDRESS = {
-  streetAddress: 'שד מנחם בגין 135',
-  addressLocality: 'טירת הכרמל',
+  addressLocality: 'חיפה',
   addressCountry: 'IL',
 } as const;
 
@@ -126,14 +125,13 @@ export function buildHomeJsonLd() {
         email: 'artium07@gmail.com',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: BUSINESS_ADDRESS.streetAddress,
           addressLocality: BUSINESS_ADDRESS.addressLocality,
           addressCountry: BUSINESS_ADDRESS.addressCountry,
         },
-        areaServed: {
-          '@type': 'Country',
-          name: 'Israel',
-        },
+        areaServed: [
+          { '@type': 'City', name: 'חיפה' },
+          { '@type': 'City', name: 'נשר' },
+        ],
         availableLanguage: ['Hebrew'],
         priceRange: '$$',
         description: HOME_DESCRIPTION,
@@ -142,7 +140,7 @@ export function buildHomeJsonLd() {
         '@type': 'Person',
         '@id': `${url}#person`,
         name: SITE_NAME,
-        jobTitle: 'יועץ משכנתאות',
+        jobTitle: 'מלווה משקיעי נדל״ן',
         url,
         image,
         telephone: PHONE_TEL,

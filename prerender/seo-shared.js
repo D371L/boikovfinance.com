@@ -3,17 +3,17 @@ export const SITE_URL = (
   process.env.VITE_SITE_URL || 'https://boikovfinance.com'
 ).replace(/\/+$/, '');
 
-export const SITE_NAME = 'ארטיום בויקוב';
+export const SITE_NAME = 'ארטיום בויקוב | FINDERS';
 
-export const HOME_TITLE = 'ארטיום בויקוב | יועץ משכנתאות בישראל';
+export const HOME_TITLE = 'ארטיום בויקוב | מלווה משקיעי נדל״ן בחיפה | FINDERS';
 
 export const HOME_DESCRIPTION =
-  'יועץ משכנתאות מנוסה שעוזר לך להשיג את הריבית הנמוכה ביותר. ייעוץ ראשוני ללא תשלום וללא התחייבות. ליווי אישי מול כל הבנקים.';
+  'מלווה משקיעי נדל״ן בחיפה והסביבה. מאתר נכסים מתחת למחיר השוק, בודק כדאיות עסקאות ומנהל משא ומתן. FINDERS – מוצאים את העסקה שאחרים מפספסים.';
 
 export const OG_IMAGE_PATH = '/assets/og-default.jpg';
 
 export const OG_IMAGE_ALT =
-  'ארטיום בויקוב – יועץ משכנתאות, ייעוץ משכנתאות בישראל';
+  'ארטיום בויקוב – מלווה משקיעי נדל״ן, FINDERS חיפה';
 
 export function resolveAbsoluteUrl(pathOrUrl) {
   if (!pathOrUrl) {
