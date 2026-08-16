@@ -5,8 +5,6 @@ import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import GallerySection from "@/components/GallerySection";
-import OfficeSection from "@/components/OfficeSection";
 import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -21,8 +19,6 @@ export default function Index() {
       <ServicesSection />
       <AboutSection />
       <TestimonialsSection />
-      <GallerySection />
-      <OfficeSection />
       <FAQSection />
       <ContactSection />
       <TopBanner />

@@ -28,7 +28,7 @@ export default function HeroSection() {
               <p className="text-base sm:text-lg text-gray-600 font-normal leading-relaxed max-w-md mx-auto lg:ms-auto border-t border-[#D4A843]/35 pt-5 sm:pt-6">
                 עוזר לך להשיג{" "}
                 <span className="font-semibold text-[#0d1b4a]">
-                  את בעסקה הטובה ביותר בנדל״ן
+                  את העסקה הטובה ביותר בנדל״ן
                 </span>{" "}
                 ולהכפיל את הכסף שלך
               </p>
